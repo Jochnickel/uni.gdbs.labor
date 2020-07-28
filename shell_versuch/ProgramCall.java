@@ -14,7 +14,7 @@ public class ProgramCall {
 				final var fullPath = dir + "/" + args[0];
 
 				if (Files.isExecutable(Paths.get(fullPath))) {
-					this.programPath = args[0];
+					this.programPath = fullPath;
 					this.args = args;
 					return;
 				}
