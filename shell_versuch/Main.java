@@ -19,7 +19,7 @@ class Main {
 				final int childID = _forkAndExec(programCall);
 				final var exitCode = _waitpid(childID);
 				if (DEBUG) {
-					System.out.printf("> ");
+					System.out.printf(">>");
 					printExit(exitCode);
 				}
 
@@ -39,24 +39,24 @@ class Main {
 
 	public static int _execv(String path, String... args) {
 		if (DEBUG)
-			System.out.printf("> execv(%s,%s =[%s])\n", path, args, String.join(",", args));
+			System.out.printf(">>execv(%s,%s =[%s])\n", path, args, String.join(",", args));
 		return execv(path, args);
 	}
 
 	private static int _forkAndExec(programCall programCall) throws ExitShellException {
 		if (DEBUG)
-			System.out.printf("> fork()\n");
+			System.out.printf(">>fork()\n");
 		final var childID = fork();
 		if (childID < 0) {
 			throw new ShellError();
-		} else if (childID > 0) {
+		} else if (childID >>0) {
 			return childID;
 		} else {
 			final var retCode = _execv(programCall.programPath, programCall.getArgs());
 			// normally this fork should stop before this point.
 			// if it didnt, were still in the shell
 			if (DEBUG)
-				System.out.printf("> retCode %d\n", retCode);
+				System.out.printf(">>retCode %d\n", retCode);
 			System.err.printf("Minmal Shell: %s : command not found\n", programCall.getArgs()[0]);
 			throw new ExitShellException();
 		}
@@ -65,7 +65,7 @@ class Main {
 	private static int _waitpid(int childID) {
 		final var returnCode = new int[1];
 		if (DEBUG)
-			System.out.printf("> waitpid(%d,%s,0)\n", childID, returnCode);
+			System.out.printf(">>waitpid(%d,%s,0)\n", childID, returnCode);
 		waitpid(childID, returnCode, 0); // returns int
 		return returnCode[0];
 	}
@@ -75,7 +75,7 @@ class Main {
 		if (strs[0].isBlank()) {
 			throw new EmptyInputException();
 		} else if (false) {
-			throw new ProgramNotFoundException(String.format("Minimal Shell: %s : command not found\n",strs));
+			throw new ProgramNotFoundException(String.format("Minimal Shell: %s : command not found\n",strs[0]));
 		} else {
 			return new programCall("/bin/"+strs[0], strs);
 			//TODO
