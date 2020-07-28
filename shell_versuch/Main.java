@@ -24,13 +24,13 @@ class Main {
 			} catch (EmptyInputException e) {
 			} catch (ExitShellException e) {
 				scanner.close();
+				exit(0);
 				break;
 			} catch (ShellError e) {
 				e.printStackTrace();
 				return;
 			}
 		}
-		exit(0);
 	}
 
 	public static int _execv(String path, String... args) {
@@ -49,7 +49,8 @@ class Main {
 			return childID;
 		} else {
 			final var retCode = _execv(programCall.program, programCall.args);
-			if (DEBUG) System.out.printf("_forkAndExec %d\n",retCode);
+			if (DEBUG)
+				System.out.printf("_forkAndExec %d\n", retCode);
 			throw new ExitShellException();
 		}
 	}
