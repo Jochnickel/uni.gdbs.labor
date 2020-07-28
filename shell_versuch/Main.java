@@ -54,7 +54,6 @@ class Main {
 			if (DEBUG)
 				System.out.printf("> retCode %d\n", retCode);
 			System.err.printf("Minmal Shell: %s : command not found\n", params[0]);
-
 			throw new ExitShellException();
 		}
 	}
