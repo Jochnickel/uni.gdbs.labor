@@ -7,7 +7,6 @@ class Main {
 	final static Scanner scanner = new Scanner(System.in);
 
 	public static void main(String[] args) {
-		System.out.println("".split(" ").length);
 		printWelcome();
 		for (;;) {
 			try {
@@ -64,13 +63,14 @@ class Main {
 	}
 
 	private static programCall getProgramCall(String userInput) throws EmptyInputException {
-		final var strs = userInput.split("\\s+", 2);
-		if (strs.length < 1) {
+		final var strs = userInput.split("\\s+", 2); // returns array>0
+		final var prName = strs[0];
+		if (prName.isBlank()) {
 			throw new EmptyInputException();
 		} else if (strs.length < 2) {
-			return new programCall(strs[0]);
+			return new programCall(prName);
 		} else {
-			return new programCall(strs[0], strs[1].split("\\s+"));
+			return new programCall(prName, strs[1].split("\\s+"));
 		}
 	}
 
