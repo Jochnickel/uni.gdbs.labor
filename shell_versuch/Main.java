@@ -35,7 +35,7 @@ class Main {
 
 	public static int _execv(String path, String... args) {
 		if (DEBUG)
-			System.out.printf("> execv(%s,[%s])\n", path, String.join(",", args));
+			System.out.printf("> execv(%s,%s =[%s])\n", path,args, String.join(",", args));
 		return execv(path, args);
 	}
 
@@ -53,7 +53,7 @@ class Main {
 			// if it didnt, were still in the shell
 			if (DEBUG)
 				System.out.printf("> retCode %d\n", retCode);
-			System.err.printf("Minmal Shell: %s : command not found", programCall.program);
+			System.err.printf("Minmal Shell: %s : command not found\n", programCall.program);
 
 			throw new ExitShellException();
 		}
