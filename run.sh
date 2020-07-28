@@ -1,0 +1,1 @@
+git add . && git commit -m 1 && git push; ssh info "cd /home/jj17/uni.gdbs.labor && git pull" && ssh jj17@tip12.informatik.uni-ulm.de "cd /home/jj17/uni.gdbs.labor/shell_versuch && source source_mich && javac Main.java && java Main"
