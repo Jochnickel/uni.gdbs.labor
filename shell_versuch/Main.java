@@ -13,7 +13,7 @@ class Main {
 				// UI
 				printCursor();
 				final var userInput = input();
-				final var programCall = getProgramArgs(userInput);
+				final String[] programCall = getProgramArgs(userInput);
 
 				// Execution
 				final int childID = _forkAndExec(programCall);
@@ -25,6 +25,7 @@ class Main {
 
 			} catch (EmptyInputException e) {
 			} catch (ProgramNotFoundException e) {
+				// we are in child fork
 				System.err.print(e.getMessage());
 			} catch (ExitShellException e) {
 				scanner.close();
@@ -43,7 +44,7 @@ class Main {
 		return execv(path, args);
 	}
 
-	private static int _forkAndExec(programCall programCall) throws ExitShellException {
+	private static int _forkAndExec(String... programCall) throws ExitShellException, ProgramNotFoundException {
 		if (DEBUG)
 			System.out.printf(">>fork()\n");
 		final var childID = fork();
@@ -52,13 +53,14 @@ class Main {
 		} else if (childID > 0) {
 			return childID;
 		} else {
-			final var retCode = _execv(programCall.programPath, programCall.getArgs());
-			// normally this fork should stop before this point.
-			// if it didnt, were still in the shell
-			if (DEBUG)
-				System.out.printf(">>retCode %d\n", retCode);
-			System.err.printf("Minmal Shell: %s : command not found\n", programCall.getArgs()[0]);
-			throw new ExitShellException();
+
+			final var $path = System.getenv("PATH");
+			final var $pathArray = $path.split(":");
+			for (String pre : $pathArray) {
+				_execv(String.format("%s/%s", pre, programCall[0]), programCall);
+			}
+
+			throw new ProgramNotFoundException(String.format("Minmal Shell: %s : command not found\n", programCall[0]));
 		}
 	}
 
@@ -70,15 +72,12 @@ class Main {
 		return returnCode[0];
 	}
 
-	private static programCall getProgramArgs(String userInput) throws EmptyInputException, ProgramNotFoundException {
+	private static String[] getProgramArgs(String userInput) throws EmptyInputException {
 		final var strs = userInput.split("\\s+"); // returns array>0
 		if (strs[0].isBlank()) {
 			throw new EmptyInputException();
-		} else if (false) {
-			throw new ProgramNotFoundException(String.format("Minimal Shell: %s : command not found\n",strs[0]));
 		} else {
-			return new programCall("/bin/"+strs[0], strs);
-			//TODO
+			return strs;
 		}
 	}
 
