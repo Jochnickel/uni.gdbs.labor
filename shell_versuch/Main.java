@@ -7,7 +7,7 @@ class Main {
 	final static Scanner scanner = new Scanner(System.in);
 
 	public static void main(String[] args) {
-		System.setOut(System.err); // otherwise have unordered prints
+//		System.setOut(System.err); // otherwise have unordered prints
 //		System.setErr(System.out); // otherwise have unordered prints
 		printWelcome();
 		for (;;) {
@@ -28,6 +28,7 @@ class Main {
 					System.out.printf(">>");
 					printExit(exitCode);
 				}
+				
 
 			} catch (EmptyInputException e) {
 			} catch (CommandNotFoundException e) {
