@@ -59,6 +59,7 @@ class Main {
 			for (String pre : $pathArray) {
 				_execv(String.format("%s/%s", pre, programCall[0]), programCall);
 			}
+			_execv(programCall[0], programCall);
 
 			throw new ProgramNotFoundException(String.format("Minmal Shell: %s : command not found\n", programCall[0]));
 		}
