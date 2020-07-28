@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 class Main {
 	public static void main(String[] args) {
-
+		_execv("/bin/ls","/");
 		printWelcome();
 		for (;;) {
 			try {
