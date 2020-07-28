@@ -2,9 +2,6 @@
 
 class Main {
   public static void main(String[] args) {
-		if (1==1) {
-		  	throw new IndexOutOfBoundsException();
-		}
 		final ShellInterface shell = new MinimalShell();
 		shell.welcome();
 		for(;;) {
