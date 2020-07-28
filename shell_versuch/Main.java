@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 class Main {
 	public static void main(String[] args) {
-//		_execv("/bin/ls","/");
+
 		printWelcome();
 		for (;;) {
 			try {
@@ -51,7 +51,7 @@ class Main {
 	}
 
 	private static void printExit(int i) {
-		System.out.printf("Process exited with exit Code %d", i);
+		System.out.printf("Process exited with exit Code %d\n", i);
 
 	}
 
