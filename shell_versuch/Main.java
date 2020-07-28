@@ -3,6 +3,7 @@ import static cTools.KernelWrapper.*;
 import java.util.Scanner;
 
 class Main {
+
 	public static void main(String[] args) {
 
 		printWelcome();
@@ -14,13 +15,11 @@ class Main {
 				final var programCall = getProgramCall(userInput);
 
 				// Execution
-
 				final int childID = _forkAndExec(programCall);
-				final var r = _waitpid(childID);
-				printExit(r);
+				final var exitCode = _waitpid(childID);
+				printExit(exitCode);
 
-			} catch (InvalidInputException e) {
-				e.printStackTrace();
+			} catch (EmptyInputException e) {
 			} catch (ExitShellException e) {
 				break;
 			} catch (ShellError e) {
@@ -28,14 +27,11 @@ class Main {
 				return;
 			}
 		}
-
 		exit(0);
 	}
 
-	private static int _waitpid(int childID) {
-		final var returnCode = new int[1];
-		waitpid(childID, returnCode, 0); // returns int
-		return returnCode[0];
+	public static void _execv(String path, String... args) {
+		execv(path, args);
 	}
 
 	private static int _forkAndExec(programCall programCall) throws ExitShellException {
@@ -50,22 +46,21 @@ class Main {
 		}
 	}
 
-	private static void printExit(int i) {
-		System.out.printf("Process exited with exit Code %d\n", i);
-
+	private static int _waitpid(int childID) {
+		final var returnCode = new int[1];
+		waitpid(childID, returnCode, 0); // returns int
+		return returnCode[0];
 	}
 
-	private static programCall getProgramCall(String userInput) throws InvalidInputException {
-		// TODO
-		return new programCall("/bin/ls", "/");
-	}
-
-	public static void _execv(String path, String... args) {
-		execv(path, args);
-	}
-
-	public static void printWelcome() {
-		System.out.println("Welcome to Minimal Shell!");
+	private static programCall getProgramCall(String userInput) throws EmptyInputException {
+		final var strs = userInput.split("\\s+", 2);
+		if(strs.length<1) {
+			throw new EmptyInputException();
+		} else if(strs.length<2) {
+			return new programCall(strs[0]);
+		} else {
+			return new programCall(strs[0],strs[1].split("\\s+"));
+		}
 	}
 
 	public static String input() throws ExitShellException {
@@ -79,6 +74,15 @@ class Main {
 
 	public static void printCursor() {
 		System.out.printf(">_");
+	}
+
+	private static void printExit(int i) {
+		System.out.printf("Process exited with exit Code %d\n", i);
+
+	}
+
+	public static void printWelcome() {
+		System.out.println("Welcome to Minimal Shell!");
 	}
 
 }
