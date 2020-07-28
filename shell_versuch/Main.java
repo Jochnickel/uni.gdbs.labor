@@ -18,7 +18,8 @@ class Main {
 				// Execution
 				final int childID = _forkAndExec(programCall);
 				final var exitCode = _waitpid(childID);
-				printExit(exitCode);
+				if (DEBUG)
+					printExit(exitCode);
 
 			} catch (EmptyInputException e) {
 			} catch (ExitShellException e) {
@@ -48,12 +49,12 @@ class Main {
 			return childID;
 		} else {
 			final var retCode = _execv(programCall.program, programCall.args);
-			//normally this fork should stop before this point.
-			//if it didnt, were still in the shell
+			// normally this fork should stop before this point.
+			// if it didnt, were still in the shell
 			if (DEBUG)
 				System.out.printf("> retCode %d\n", retCode);
 			System.err.printf("Minmal Shell: %s : command not found", programCall.program);
-			
+
 			throw new ExitShellException();
 		}
 	}
