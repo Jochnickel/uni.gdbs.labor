@@ -1,4 +1,6 @@
-import static cTools.KernelWrapper;
+import static cTools.KernelWrapper.*;
+
+import cTools.KernelWrapper;
 /**
  * a class to isolate the KernelWrapper
  * 
@@ -7,7 +9,7 @@ import static cTools.KernelWrapper;
  */
 public class KernelWrapperHandler {
 
-	public static int fork() throws ForkFailedException {
+	public static int Fork() throws ForkFailedException {
 		try {
 			final var f = KernelWrapper.fork();
 			if (f < 0) {
@@ -23,7 +25,7 @@ public class KernelWrapperHandler {
 		}
 	}
 
-	public static int execv(String[] userInput) {
+	public static int Execv(String[] userInput) {
 		try {
 			return KernelWrapper.execv(System.getProperty("user.dir"), userInput);
 		} catch (Exception e) {
@@ -33,7 +35,7 @@ public class KernelWrapperHandler {
 		}
 	}
 
-	public static int waitpid(int myChildOrNull) {
+	public static int Waitpid(int myChildOrNull) {
 		try {
 			return KernelWrapper.waitpid(myChildOrNull, null, 0);
 		} catch (Exception e) {
