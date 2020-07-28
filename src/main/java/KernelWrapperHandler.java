@@ -1,4 +1,4 @@
-import static cTools.KernelWrapper.*;
+import static cTools.KernelWrapper;
 /**
  * a class to isolate the KernelWrapper
  * 
