@@ -29,12 +29,11 @@ public class MinimalShell {
 	}
 
 	private static void printCursor() {
-		// TODO Auto-generated method stub
+		System.out.printf(">_");
 
 	}
 
 	private static void printWelcome() {
-		// TODO Auto-generated method stub
-
+		System.out.printf("Welcome to the minimal Shell!\n");
 	}
 }
