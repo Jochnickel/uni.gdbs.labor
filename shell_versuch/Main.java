@@ -77,7 +77,8 @@ class Main {
 		} else if (false) {
 			throw new ProgramNotFoundException("Minimal Shell: %s : command not found\n".formatted(strs));
 		} else {
-			return new programCall(strs[0], strs);
+			return new programCall("/bin/"+strs[0], strs);
+			//TODO
 		}
 	}
 
