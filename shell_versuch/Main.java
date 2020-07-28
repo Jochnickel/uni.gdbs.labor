@@ -13,7 +13,7 @@ class Main {
 				// UI
 				printCursor();
 				final var userInput = input();
-				final var programCall = getProgramCall(userInput);
+				final var programCall = getProgramArgs(userInput);
 
 				// Execution
 				final int childID = _forkAndExec(programCall);
@@ -39,7 +39,7 @@ class Main {
 		return execv(path, args);
 	}
 
-	private static int _forkAndExec(programCall programCall) throws ExitShellException {
+	private static int _forkAndExec(String ...params) throws ExitShellException {
 		if (DEBUG)
 			System.out.printf("> fork()\n");
 		final var childID = fork();
@@ -48,7 +48,7 @@ class Main {
 		} else if (childID > 0) {
 			return childID;
 		} else {
-			final var retCode = _execv(programCall.program, programCall.args);
+			final var retCode = _execv(params[0], params);
 			// normally this fork should stop before this point.
 			// if it didnt, were still in the shell
 			if (DEBUG)
@@ -67,15 +67,12 @@ class Main {
 		return returnCode[0];
 	}
 
-	private static programCall getProgramCall(String userInput) throws EmptyInputException {
+	private static String[] getProgramArgs(String userInput) throws EmptyInputException {
 		final var strs = userInput.split("\\s+"); // returns array>0
-		final var prName = strs[0];
-		if (prName.isBlank()) {
+		if (strs[0].isBlank()) {
 			throw new EmptyInputException();
-		} else if (strs.length < 2) {
-			return new programCall(prName, strs);
 		} else {
-			return new programCall(prName, strs);
+			return strs;
 		}
 	}
 
