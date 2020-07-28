@@ -18,8 +18,10 @@ class Main {
 				// Execution
 				final int childID = _forkAndExec(programCall);
 				final var exitCode = _waitpid(childID);
-				if (DEBUG)
+				if (DEBUG) {
+					System.out.printf("> ");
 					printExit(exitCode);
+				}
 
 			} catch (EmptyInputException e) {
 			} catch (ExitShellException e) {
@@ -35,11 +37,11 @@ class Main {
 
 	public static int _execv(String path, String... args) {
 		if (DEBUG)
-			System.out.printf("> execv(%s,%s =[%s])\n", path,args, String.join(",", args));
+			System.out.printf("> execv(%s,%s =[%s])\n", path, args, String.join(",", args));
 		return execv(path, args);
 	}
 
-	private static int _forkAndExec(String ...params) throws ExitShellException {
+	private static int _forkAndExec(programCall programCall) throws ExitShellException {
 		if (DEBUG)
 			System.out.printf("> fork()\n");
 		final var childID = fork();
@@ -48,12 +50,12 @@ class Main {
 		} else if (childID > 0) {
 			return childID;
 		} else {
-			final var retCode = _execv(params[0], params);
+			final var retCode = _execv(programCall.programPath, programCall.getArgs());
 			// normally this fork should stop before this point.
 			// if it didnt, were still in the shell
 			if (DEBUG)
 				System.out.printf("> retCode %d\n", retCode);
-			System.err.printf("Minmal Shell: %s : command not found\n", params[0]);
+			System.err.printf("Minmal Shell: %s : command not found\n", programCall.getArgs()[0]);
 			throw new ExitShellException();
 		}
 	}
@@ -66,12 +68,12 @@ class Main {
 		return returnCode[0];
 	}
 
-	private static String[] getProgramArgs(String userInput) throws EmptyInputException {
+	private static programCall getProgramArgs(String userInput) throws EmptyInputException, ProgramNotFoundException {
 		final var strs = userInput.split("\\s+"); // returns array>0
 		if (strs[0].isBlank()) {
 			throw new EmptyInputException();
 		} else {
-			return strs;
+			return;
 		}
 	}
 
