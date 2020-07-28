@@ -7,6 +7,7 @@ class Main {
 	final static Scanner scanner = new Scanner(System.in);
 
 	public static void main(String[] args) {
+		System.out.wait();
 		printWelcome();
 		for (;;) {
 			try {
@@ -93,7 +94,7 @@ class Main {
 	}
 
 	private static void printExit(int i) {
-		System.out.printf("Program exited with exit Code %d\n", i);
+		System.out.printf("Program exited with exit code %d\n", i);
 
 	}
 
