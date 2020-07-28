@@ -31,10 +31,10 @@ class Main {
 		exit(0);
 	}
 
-	public static void _execv(String path, String... args) {
+	public static int _execv(String path, String... args) {
 		if (DEBUG)
 			System.out.printf("execv(%s,[%s])\n", path, String.join(",", args));
-		execv(path, args);
+		return execv(path, args);
 	}
 
 	private static int _forkAndExec(programCall programCall) throws ExitShellException {
@@ -46,7 +46,8 @@ class Main {
 		} else if (childID > 0) {
 			return childID;
 		} else {
-			_execv(programCall.program, programCall.args);
+			final var retCode = _execv(programCall.program, programCall.args);
+			if (DEBUG) System.out.printf("_forkAndExec %d\n",retCode);
 			throw new ExitShellException();
 		}
 	}
