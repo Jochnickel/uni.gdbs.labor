@@ -73,7 +73,7 @@ class Main {
 		if (prName.isBlank()) {
 			throw new EmptyInputException();
 		} else if (strs.length < 2) {
-			return new programCall(prName);
+			return new programCall(prName, strs);
 		} else {
 			return new programCall(prName, strs);
 		}
