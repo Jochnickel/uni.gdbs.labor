@@ -1,0 +1,2 @@
+language = "bash"
+run = "cd src/main/java && javac de/jj22/uni/gdbs/labor/Main.java && java de.jj22.uni.gdbs.labor.Main"
