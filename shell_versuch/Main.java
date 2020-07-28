@@ -48,7 +48,7 @@ class Main {
 		} else if (childID > 0) {
 			return childID;
 		} else {
-			final var retCode = _execv(programCall.program, programCall.program, programCall.args);
+			final var retCode = _execv(programCall.program, programCall.args);
 			// normally this fork should stop before this point.
 			// if it didnt, were still in the shell
 			if (DEBUG)
@@ -68,14 +68,14 @@ class Main {
 	}
 
 	private static programCall getProgramCall(String userInput) throws EmptyInputException {
-		final var strs = userInput.split("\\s+", 2); // returns array>0
+		final var strs = userInput.split("\\s+"); // returns array>0
 		final var prName = strs[0];
 		if (prName.isBlank()) {
 			throw new EmptyInputException();
 		} else if (strs.length < 2) {
 			return new programCall(prName);
 		} else {
-			return new programCall(prName, strs[1].split("\\s+"));
+			return new programCall(prName, strs);
 		}
 	}
 
