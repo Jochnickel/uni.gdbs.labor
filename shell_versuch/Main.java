@@ -51,7 +51,8 @@ class Main {
 			//normally the fork should stop before this point.
 			if (DEBUG)
 				System.out.printf("> retCode %d\n", retCode);
-			
+			System.err.printf("Minmal Shell: %s : command not found", programCall.program);
+			exit(retCode);
 			throw new ShellError();
 		}
 	}
