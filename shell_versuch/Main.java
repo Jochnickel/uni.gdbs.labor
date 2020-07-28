@@ -29,13 +29,13 @@ class Main {
 
 			} catch (EmptyInputException e) {
 			} catch (CommandNotFoundException e) {
-				System.err.printf("Minimal Shell: %s\n", e.getMessage());
+				System.out.printf("Minimal Shell: %s\n", e.getMessage());
 			} catch (ExitShellException e) {
 				scanner.close();
 				exit(0);
 				break;
 			} catch (ShellError e) {
-				System.err.println("ShellError");
+				System.out.println("ShellError");
 				e.printStackTrace();
 				return;
 			}
