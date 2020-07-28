@@ -3,7 +3,7 @@ import static cTools.KernelWrapper.*;
 import java.util.Scanner;
 
 class Main {
-	final static boolean DEBUG = true;
+	final static boolean DEBUG = false;
 	final static Scanner scanner = new Scanner(System.in);
 
 	public static void main(String[] args) {
@@ -65,8 +65,6 @@ class Main {
 
 	private static int _waitpid(int childID) {
 		final var returnCode = new int[1];
-		if (DEBUG)
-			System.out.printf(">>waitpid(%d,%s,0)\n", childID, returnCode);
 		waitpid(childID, returnCode, 0); // returns int
 		return returnCode[0];
 	}
