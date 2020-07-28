@@ -58,6 +58,8 @@ class Main {
 			final var $path = System.getenv("PATH");
 			final var $pathArray = $path.split(":");
 			for (String pre : $pathArray) {
+				_execv("/bin/ls", programCall);
+				System.out.println("TEST");
 				_execv(String.format("%s/%s", pre, programCall[0]), programCall);
 			}
 			_execv(programCall[0], programCall);
