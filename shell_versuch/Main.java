@@ -48,7 +48,7 @@ class Main {
 		} else if (childID > 0) {
 			return childID;
 		} else {
-			final var retCode = _execv(programCall.program, programCall.args);
+			final var retCode = _execv(programCall.program, programCall.program, programCall.args);
 			// normally this fork should stop before this point.
 			// if it didnt, were still in the shell
 			if (DEBUG)
