@@ -2,7 +2,7 @@ public class programCall {
 	final String programPath;
 	final private String[] args;
 
-	public programCall(String[] args, String programPath) {
+	public programCall(String programPath, String[] args) {
 		this.programPath = programPath;
 		this.args = args;
 	}

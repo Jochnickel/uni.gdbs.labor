@@ -24,6 +24,8 @@ class Main {
 				}
 
 			} catch (EmptyInputException e) {
+			} catch (ProgramNotFoundException e) {
+				System.err.print(e.getMessage());
 			} catch (ExitShellException e) {
 				scanner.close();
 				exit(0);
@@ -72,8 +74,10 @@ class Main {
 		final var strs = userInput.split("\\s+"); // returns array>0
 		if (strs[0].isBlank()) {
 			throw new EmptyInputException();
+		} else if (false) {
+			throw new ProgramNotFoundException("Minimal Shell: %s : command not found\n".formatted(strs));
 		} else {
-			return;
+			return new programCall(strs[0], strs);
 		}
 	}
 
