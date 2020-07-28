@@ -21,7 +21,7 @@ class Main {
 
 	}
 
-	private static List<String> readInput() throws ExitShellException {
+	private static String[] readInput() throws ExitShellException {
 		// TODO Auto-generated method stub
 		return null;
 	}
