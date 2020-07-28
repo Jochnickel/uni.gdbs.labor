@@ -16,7 +16,7 @@ class Main {
 		}
 	}
 
-	private static void execInput(List<String> userInput) throws Exception {
+	private static void execInput(String ...userInput) throws Exception {
 		// TODO Auto-generated method stub
 
 	}
