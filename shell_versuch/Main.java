@@ -32,7 +32,7 @@ class Main {
 	}
 
 	public static void _execv(String path, String... args) {
-		if (DEBUG) System.out.printf("execv(%s,[%s])\n",String.join(",", args));
+		if (DEBUG) System.out.printf("execv(%s,[%s])\n",path, String.join(",", args));
 		execv(path, args);
 	}
 
@@ -51,7 +51,7 @@ class Main {
 
 	private static int _waitpid(int childID) {
 		final var returnCode = new int[1];
-		if (DEBUG) System.out.printf("waitpid(%d,..,0)\n",childID);
+		if (DEBUG) System.out.printf("waitpid(%d,%d,0)\n",childID, returnCode);
 		waitpid(childID, returnCode, 0); // returns int
 		return returnCode[0];
 	}
