@@ -49,7 +49,7 @@ class Main {
 		final var childID = fork();
 		if (childID < 0) {
 			throw new ShellError();
-		} else if (childID >>0) {
+		} else if (childID > 0) {
 			return childID;
 		} else {
 			final var retCode = _execv(programCall.programPath, programCall.getArgs());
