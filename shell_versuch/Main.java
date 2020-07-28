@@ -3,6 +3,7 @@ import static cTools.KernelWrapper.*;
 import java.util.Scanner;
 
 class Main {
+	final static boolean DEBUG = true;
 
 	public static void main(String[] args) {
 
@@ -31,10 +32,12 @@ class Main {
 	}
 
 	public static void _execv(String path, String... args) {
+		if (DEBUG) System.out.printf("execv(%s,[%s])\\n",String.join(",", args));
 		execv(path, args);
 	}
 
 	private static int _forkAndExec(programCall programCall) throws ExitShellException {
+		if (DEBUG) System.out.printf("fork()\n");
 		final var childID = fork();
 		if (childID < 0) {
 			throw new ShellError();
@@ -48,6 +51,7 @@ class Main {
 
 	private static int _waitpid(int childID) {
 		final var returnCode = new int[1];
+		if (DEBUG) System.out.printf("waitpid(%d,%s,0)\\n",childID, returnCode);
 		waitpid(childID, returnCode, 0); // returns int
 		return returnCode[0];
 	}
@@ -66,8 +70,11 @@ class Main {
 	public static String input() throws ExitShellException {
 		final var scanner = new Scanner(System.in);
 		if (scanner.hasNextLine()) {
-			return scanner.nextLine();
+			final var answ = scanner.nextLine();
+			scanner.close();
+			return answ;
 		} else {
+			scanner.close();
 			throw new ExitShellException();
 		}
 	}
