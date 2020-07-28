@@ -75,7 +75,7 @@ class Main {
 		if (strs[0].isBlank()) {
 			throw new EmptyInputException();
 		} else if (false) {
-			throw new ProgramNotFoundException("Minimal Shell: %s : command not found\n".formatted(strs));
+			throw new ProgramNotFoundException(String.format("Minimal Shell: %s : command not found\n",strs));
 		} else {
 			return new programCall("/bin/"+strs[0], strs);
 			//TODO
