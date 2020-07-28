@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 class Main {
 	final static boolean DEBUG = true;
+	final static Scanner scanner = new Scanner(System.in);
 
 	public static void main(String[] args) {
 
@@ -22,6 +23,7 @@ class Main {
 
 			} catch (EmptyInputException e) {
 			} catch (ExitShellException e) {
+				scanner.close();
 				break;
 			} catch (ShellError e) {
 				e.printStackTrace();
@@ -72,13 +74,10 @@ class Main {
 	}
 
 	public static String input() throws ExitShellException {
-		final var scanner = new Scanner(System.in);
 		if (scanner.hasNextLine()) {
 			final var answ = scanner.nextLine();
-			scanner.close();
 			return answ;
 		} else {
-			scanner.close();
 			throw new ExitShellException();
 		}
 	}
