@@ -32,4 +32,9 @@ public class ProgramCall {
 	public String getArgument(int i) {
 		return args[i];
 	}
+	
+	@Override
+	public String toString() {
+		return String.format("{programPath = '' , args = []}",String.join(", ", args));
+	}
 }

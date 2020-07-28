@@ -15,10 +15,13 @@ class Main {
 				final var userInput = input();
 				final var programCall = getProgramArgs(userInput);
 
+				if (DEBUG)
+					System.out.printf(">>programCall: %s",programCall);
+
 				// Execution
 				final int childID = _forkAndExec(programCall);
 				final var exitCode = _waitpid(childID);
-				
+
 				if (DEBUG) {
 					System.out.printf(">>");
 					printExit(exitCode);
