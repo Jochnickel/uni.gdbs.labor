@@ -13,20 +13,20 @@ class Main {
 				// UI
 				printCursor();
 				final var userInput = input();
-				final String[] programCall = getProgramArgs(userInput);
+				final var programCall = getProgramArgs(userInput);
 
 				// Execution
 				final int childID = _forkAndExec(programCall);
 				final var exitCode = _waitpid(childID);
+				
 				if (DEBUG) {
 					System.out.printf(">>");
 					printExit(exitCode);
 				}
 
 			} catch (EmptyInputException e) {
-			} catch (ProgramNotFoundException e) {
-				// we are in child fork
-				System.err.print(e.getMessage());
+			} catch (CommandNotFoundException e) {
+				System.err.printf("Minimal Shell: %s\n", e.getMessage());
 			} catch (ExitShellException e) {
 				scanner.close();
 				exit(0);
@@ -45,7 +45,7 @@ class Main {
 		return execv(path, args);
 	}
 
-	private static int _forkAndExec(String... programCall) throws ExitShellException, ProgramNotFoundException {
+	private static int _forkAndExec(ProgramCall programCall) throws ExitShellException, CommandNotFoundException {
 		if (DEBUG)
 			System.out.printf(">>fork()\n");
 		final var childID = fork();
@@ -54,17 +54,8 @@ class Main {
 		} else if (childID > 0) {
 			return childID;
 		} else {
-
-			final var $path = System.getenv("PATH");
-			final var $pathArray = $path.split(":");
-			for (String pre : $pathArray) {
-				_execv("/bin/ls", programCall);
-				System.out.println("TEST");
-				_execv(String.format("%s/%s", pre, programCall[0]), programCall);
-			}
-			_execv(programCall[0], programCall);
-
-			throw new ProgramNotFoundException(String.format("Minmal Shell: %s : command not found\n", programCall[0]));
+			_execv(programCall.programPath, programCall.getArgs());
+			throw new CommandNotFoundException(programCall.getArgument(0));
 		}
 	}
 
@@ -76,12 +67,12 @@ class Main {
 		return returnCode[0];
 	}
 
-	private static String[] getProgramArgs(String userInput) throws EmptyInputException {
+	private static ProgramCall getProgramArgs(String userInput) throws EmptyInputException, CommandNotFoundException {
 		final var strs = userInput.split("\\s+"); // returns array>0
 		if (strs[0].isBlank()) {
 			throw new EmptyInputException();
 		} else {
-			return strs;
+			return new ProgramCall(strs);
 		}
 	}
 
