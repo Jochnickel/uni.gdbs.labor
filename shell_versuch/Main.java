@@ -7,7 +7,7 @@ class Main {
 	final static Scanner scanner = new Scanner(System.in);
 
 	public static void main(String[] args) {
-		System.out.wait();
+		System.setErr(System.out); // otherwise have unordered prints
 		printWelcome();
 		for (;;) {
 			try {
@@ -30,7 +30,7 @@ class Main {
 
 			} catch (EmptyInputException e) {
 			} catch (CommandNotFoundException e) {
-				System.out.printf("Minimal Shell: %s\n", e.getMessage());
+				System.err.printf("Minimal Shell: %s\n", e.getMessage());
 			} catch (ExitShellException e) {
 				scanner.close();
 				exit(0);
