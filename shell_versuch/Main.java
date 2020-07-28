@@ -32,12 +32,14 @@ class Main {
 	}
 
 	public static void _execv(String path, String... args) {
-		if (DEBUG) System.out.printf("execv(%s,[%s])\n",path, String.join(",", args));
+		if (DEBUG)
+			System.out.printf("execv(%s,[%s])\n", path, String.join(",", args));
 		execv(path, args);
 	}
 
 	private static int _forkAndExec(programCall programCall) throws ExitShellException {
-		if (DEBUG) System.out.printf("fork()\n");
+		if (DEBUG)
+			System.out.printf("fork()\n");
 		final var childID = fork();
 		if (childID < 0) {
 			throw new ShellError();
@@ -51,19 +53,20 @@ class Main {
 
 	private static int _waitpid(int childID) {
 		final var returnCode = new int[1];
-		if (DEBUG) System.out.printf("waitpid(%d,%s,0)\n",childID, returnCode);
+		if (DEBUG)
+			System.out.printf("waitpid(%d,%s,0)\n", childID, returnCode);
 		waitpid(childID, returnCode, 0); // returns int
 		return returnCode[0];
 	}
 
 	private static programCall getProgramCall(String userInput) throws EmptyInputException {
 		final var strs = userInput.split("\\s+", 2);
-		if(strs.length<1) {
+		if (strs.length < 1) {
 			throw new EmptyInputException();
-		} else if(strs.length<2) {
+		} else if (strs.length < 2) {
 			return new programCall(strs[0]);
 		} else {
-			return new programCall(strs[0],strs[1].split("\\s+"));
+			return new programCall(strs[0], strs[1].split("\\s+"));
 		}
 	}
 
