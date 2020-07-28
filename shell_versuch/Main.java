@@ -49,11 +49,11 @@ class Main {
 		} else {
 			final var retCode = _execv(programCall.program, programCall.args);
 			//normally this fork should stop before this point.
-			//if it didnt, the process couldnt change
+			//if it didnt, were still in the shell
 			if (DEBUG)
 				System.out.printf("> retCode %d\n", retCode);
 			System.err.printf("Minmal Shell: %s : command not found", programCall.program);
-			exit(retCode);
+			System.exit(1);
 			throw new ShellError();
 		}
 	}
