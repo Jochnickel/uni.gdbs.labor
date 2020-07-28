@@ -51,7 +51,7 @@ class Main {
 
 	private static int _waitpid(int childID) {
 		final var returnCode = new int[1];
-		if (DEBUG) System.out.printf("waitpid(%d,%s,0)\n",childID, returnCode);
+		if (DEBUG) System.out.printf("waitpid(%d,..,0)\n",childID);
 		waitpid(childID, returnCode, 0); // returns int
 		return returnCode[0];
 	}
