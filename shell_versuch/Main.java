@@ -34,13 +34,13 @@ class Main {
 
 	public static int _execv(String path, String... args) {
 		if (DEBUG)
-			System.out.printf("execv(%s,[%s])\n", path, String.join(",", args));
+			System.out.printf("> execv(%s,[%s])\n", path, String.join(",", args));
 		return execv(path, args);
 	}
 
 	private static int _forkAndExec(programCall programCall) throws ExitShellException {
 		if (DEBUG)
-			System.out.printf("fork()\n");
+			System.out.printf("> fork()\n");
 		final var childID = fork();
 		if (childID < 0) {
 			throw new ShellError();
@@ -49,7 +49,7 @@ class Main {
 		} else {
 			final var retCode = _execv(programCall.program, programCall.args);
 			if (DEBUG)
-				System.out.printf("_forkAndExec %d\n", retCode);
+				System.out.printf("> _forkAndExec %d\n", retCode);
 			throw new ExitShellException();
 		}
 	}
@@ -57,7 +57,7 @@ class Main {
 	private static int _waitpid(int childID) {
 		final var returnCode = new int[1];
 		if (DEBUG)
-			System.out.printf("waitpid(%d,%s,0)\n", childID, returnCode);
+			System.out.printf("> waitpid(%d,%s,0)\n", childID, returnCode);
 		waitpid(childID, returnCode, 0); // returns int
 		return returnCode[0];
 	}
