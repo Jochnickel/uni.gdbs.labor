@@ -41,7 +41,7 @@ public class MinimalShell {
 	}
 
 	private static void printCursor() {
-		System.out.println(">_");
+		System.out.printf(">_");
 	}
 
 	private static void printWelcome() {
