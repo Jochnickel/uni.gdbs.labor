@@ -1,6 +1,7 @@
 package de.jj22.uni.gdbs.labor;
 
 import java.util.List;
+import static cTools.KernelWrapper.*;
 
 public class MinimalShell {
 	public static void main(String[] args) {

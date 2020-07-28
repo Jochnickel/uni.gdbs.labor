@@ -1,2 +1,2 @@
 language = "bash"
-run = "cd src/main/java && javac de/jj22/uni/gdbs/labor/Main.java && java de.jj22.uni.gdbs.labor.Main"
+run = "git add . && git commit -m 1 && git push && ssh jj17@tip01.informatik.uni-ulm.de && cd uni.gdbs.labor && git pull && cd shell_versuch && source source_mich && javac Main.java && java Main"
