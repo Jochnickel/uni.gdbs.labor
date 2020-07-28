@@ -32,6 +32,7 @@ class Main {
 				exit(0);
 				break;
 			} catch (ShellError e) {
+				System.err.println("ShellError");
 				e.printStackTrace();
 				return;
 			}
