@@ -7,7 +7,7 @@ class Main {
 	final static Scanner scanner = new Scanner(System.in);
 
 	public static void main(String[] args) {
-		System.setErr(System.out); // otherwise have unordered prints
+		System.setOut(System.err); // otherwise have unordered prints
 		printWelcome();
 		for (;;) {
 			try {
