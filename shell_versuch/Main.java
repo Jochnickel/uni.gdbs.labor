@@ -17,7 +17,7 @@ class Main {
 				final var programCall = getProgramArgs(userInput);
 
 				if (DEBUG)
-					System.out.printf(">>programCall: %s",programCall);
+					System.out.printf(">>programCall: %s\n",programCall);
 
 				// Execution
 				final int childID = _forkAndExec(programCall);
