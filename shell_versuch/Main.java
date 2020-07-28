@@ -48,9 +48,11 @@ class Main {
 			return childID;
 		} else {
 			final var retCode = _execv(programCall.program, programCall.args);
+			//normally the fork should stop before this point.
 			if (DEBUG)
-				System.out.printf("> _forkAndExec %d\n", retCode);
-			throw new ExitShellException();
+				System.out.printf("> retCode %d\n", retCode);
+			
+			throw new ShellError();
 		}
 	}
 
