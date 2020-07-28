@@ -20,11 +20,11 @@ public class MinimalShell {
 		}
 		final var programName = userInput[0];
 		try {
-			final var myChildOrNull = KernelWrapperHandler.fork();
+			final var myChildOrNull = KernelWrapperHandler.Fork();
 			if(myChildOrNull==0) {
-				KernelWrapperHandler.execv(userInput);
+				KernelWrapperHandler.Execv(userInput);
 			} else {
-				final var exitCode = KernelWrapperHandler.waitpid(myChildOrNull);
+				final var exitCode = KernelWrapperHandler.Waitpid(myChildOrNull);
 				System.out.printf("%s exited with exit code %d\n",programName,exitCode);
 			}
 			
