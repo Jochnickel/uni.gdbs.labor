@@ -11,10 +11,8 @@ class MinimalShell implements ShellInterface{
 	@Override
 	public String[] userInput() throws ExitShellException {
 		final var str = Input.input("");
-		if(true)
-		throw new IndexOutOfBoundsException();
-		return null;
-	
+		final var strings = str.split("\\s+");
+		return strings;
 	}
 
 	@Override
