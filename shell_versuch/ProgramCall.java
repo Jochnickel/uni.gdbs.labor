@@ -12,7 +12,9 @@ public class ProgramCall {
 			final var $path = System.getenv("PATH");
 			final var $pathArray = $path.split(":");
 			for (String dir : $pathArray) {
-				if(Files.isExecutable(Paths.get(dir+"/"+args[0]))) {
+				final var fullPath = dir+"/"+args[0];
+				System.out.println(fullPath);
+				if(Files.isExecutable(Paths.get(fullPath))) {
 					this.programPath = args[0];
 					break;
 				}
