@@ -4,12 +4,12 @@ import java.nio.file.Paths;
 public class ProgramCall {
 	final String programPath;
 	final private String[] args;
+	
 
 	public ProgramCall(String[] args) throws CommandNotFoundException {
 		if (args[0].startsWith("/")) {
 			this.programPath = args[0];
 		} else {
-
 			for (String dir : System.getenv("PATH").split(":")) {
 				final var fullPath = dir + "/" + args[0];
 

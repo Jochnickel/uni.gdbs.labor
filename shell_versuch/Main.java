@@ -30,6 +30,8 @@ class Main {
 				}
 				
 
+			} catch (ShellTooPoorException e) {
+				System.err.println("Command contains unknown character");
 			} catch (EmptyInputException e) {
 			} catch (CommandNotFoundException e) {
 				System.err.printf("Minimal Shell: %s\n", e.getMessage());
@@ -99,7 +101,7 @@ class Main {
 	}
 
 	public static void printWelcome() {
-		System.out.println("Welcome to Minimal Shell!");
+		System.out.println("Welcome to Minimal Shell! Features: <File, >File, cmd1 | cmd2");
 	}
 
 }
