@@ -10,6 +10,7 @@ public class ProgramCall {
 		if (args[0].startsWith("/")) {
 			this.programPath = args[0];
 		} else {
+			
 			for (String dir : System.getenv("PATH").split(":")) {
 				final var fullPath = dir + "/" + args[0];
 

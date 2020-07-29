@@ -11,39 +11,37 @@ class Main {
 //		System.setErr(System.out); // otherwise have unordered prints
 		printWelcome();
 		for (;;) {
-			try {
-				// UI
-				printCursor();
-				final var userInput = input();
-				final var programCall = getProgramArgs(userInput);
+			// UI
+			printCursor();
+			var userInput = input();
+			for (;;)
+				try {
+					final var programCall = getProgramArgs(userInput);
 
-				if (DEBUG)
-					System.out.printf(">>programCall: %s\n",programCall);
+					if (DEBUG)
+						System.out.printf(">>programCall: %s\n", programCall);
 
-				// Execution
-				final int childID = _forkAndExec(programCall);
-				final var exitCode = _waitpid(childID);
+					// Execution
+					final int childID = _forkAndExec(programCall);
+					final var exitCode = _waitpid(childID);
 
-				if (DEBUG) {
-					System.out.printf(">>");
-					printExit(exitCode);
+					if (DEBUG) {
+						System.out.printf(">>");
+						printExit(exitCode);
+					}
+
+				} catch (EmptyInputException e) {
+				} catch (CommandNotFoundException e) {
+					System.err.printf("Minimal Shell: %s\n", e.getMessage());
+				} catch (ExitShellException e) {
+					scanner.close();
+					exit(0);
+					break;
+				} catch (ShellError e) {
+					System.err.println("ShellError");
+					e.printStackTrace();
+					return;
 				}
-				
-
-			} catch (ShellTooPoorException e) {
-				System.err.println("Command contains unknown character");
-			} catch (EmptyInputException e) {
-			} catch (CommandNotFoundException e) {
-				System.err.printf("Minimal Shell: %s\n", e.getMessage());
-			} catch (ExitShellException e) {
-				scanner.close();
-				exit(0);
-				break;
-			} catch (ShellError e) {
-				System.err.println("ShellError");
-				e.printStackTrace();
-				return;
-			}
 		}
 	}
 
