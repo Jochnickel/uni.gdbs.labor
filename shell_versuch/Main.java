@@ -13,9 +13,9 @@ class Main {
 		for (;;) {
 			// UI
 			printCursor();
-			var userInput = input();
 			for (;;)
 				try {
+					var userInput = input();
 					final var programCall = getProgramArgs(userInput);
 
 					if (DEBUG)
