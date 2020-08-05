@@ -1,105 +1,99 @@
-import static cTools.KernelWrapper.*;
 
-import java.util.Scanner;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.PrintStream;
+
+import utils.ExitShellException;
+import utils.Pipe;
+import utils.Pipeline;
+import utils.SimpleCommand;
 
 class Main {
-	final static boolean DEBUG = false;
-	final static Scanner scanner = new Scanner(System.in);
+	private final static int CHILD = 0;
 
 	public static void main(String[] args) {
-//		System.setOut(System.err); // otherwise have unordered prints
-//		System.setErr(System.out); // otherwise have unordered prints
 		printWelcome();
 		for (;;) {
-			// UI
-			printCursor();
-			var userInput = input();
-			for (;;)
-				try {
-					final var programCall = getProgramArgs(userInput);
+			try {
+				printPrompt();
+				var userInput = input();
+				var command = new SimpleCommand(userInput);
+				executeSimpleCommand(command, null, null);
+			} catch (ExitShellException e) {
+				return;
+			} catch (Exception e) {
+				System.err.println(e.getMessage());
+			}
 
-					if (DEBUG)
-						System.out.printf(">>programCall: %s\n", programCall);
-
-					// Execution
-					final int childID = _forkAndExec(programCall);
-					final var exitCode = _waitpid(childID);
-
-					if (DEBUG) {
-						System.out.printf(">>");
-						printExit(exitCode);
-					}
-
-				} catch (EmptyInputException e) {
-				} catch (CommandNotFoundException e) {
-					System.err.printf("Minimal Shell: %s\n", e.getMessage());
-				} catch (ExitShellException e) {
-					scanner.close();
-					exit(0);
-					break;
-				} catch (ShellError e) {
-					System.err.println("ShellError");
-					e.printStackTrace();
-					return;
-				}
 		}
 	}
 
-	public static int _execv(String path, String... args) {
-		if (DEBUG)
-			System.out.printf(">>execv(%s,%s =[%s])\n", path, args, String.join(",", args));
-		return execv(path, args);
-	}
-
-	private static int _forkAndExec(ProgramCall programCall) throws ExitShellException, CommandNotFoundException {
-		if (DEBUG)
-			System.out.printf(">>fork()\n");
-		final var childID = fork();
-		if (childID < 0) {
-			throw new ShellError();
-		} else if (childID > 0) {
-			return childID;
+	private static void executeSimpleCommand(SimpleCommand command, Pipe pipeInput, Pipe pipeOutput) throws Exception {
+		final var execPath = command.findExecPath(); //Its important to find the executable before we fork for Error Handling
+		final var pid = _fork();
+		if (CHILD == pid) {
+			attachPipes(pipeInput, pipeOutput);
+			attachFileInOut(command.inFileName, command.outFileName);
+			cTools.KernelWrapper.execv(execPath, command.args);
+			throw new Error("This should never be reached, since the exec exists");
 		} else {
-			_execv(programCall.programPath, programCall.getArgs());
-			throw new CommandNotFoundException(programCall.getArgument(0));
+			final var childReturnCode = new int[1];
+			final var childPID = cTools.KernelWrapper.waitpid(pid, childReturnCode, 0);
+			
 		}
 	}
 
-	private static int _waitpid(int childID) {
-		final var returnCode = new int[1];
-		waitpid(childID, returnCode, 0); // returns int
-		return returnCode[0];
+	private static void attachPipes(Pipe pipeInput, Pipe pipeOutput) {
+		if (null != pipeInput) {
+			System.setIn(pipeInput.getInputStream());
+		}
+		if (null != pipeOutput) {
+			final var printStream = new PrintStream(pipeOutput.getOutputStream());
+			System.setOut(printStream);
+		}
 	}
-
-	private static ProgramCall getProgramArgs(String userInput) throws EmptyInputException, CommandNotFoundException {
-		final var strs = userInput.split("\\s+"); // returns array>0
-		if (strs[0].isBlank()) {
-			throw new EmptyInputException();
-		} else {
-			return new ProgramCall(strs);
+	
+	private static void attachFileInOut(String inFileName, String outFileName) throws FileNotFoundException {
+		if (inFileName!=null) {
+			System.setIn(new FileInputStream(inFileName));
+		}
+		if (outFileName!=null) {
+			final var printStream = new PrintStream(new FileOutputStream(outFileName));
+			System.setOut(printStream);
 		}
 	}
 
-	public static String input() throws ExitShellException {
-		if (scanner.hasNextLine()) {
-			final var answ = scanner.nextLine();
-			return answ;
-		} else {
-			throw new ExitShellException();
+	private static int _fork() {
+		final var pid = cTools.KernelWrapper.fork();
+		if (pid < 0) {
+			throw new Error();
 		}
+		return pid;
 	}
 
-	public static void printCursor() {
-		System.out.printf(">_");
-	}
-
-	private static void printExit(int i) {
-		System.out.printf("Program exited with exit code %d\n", i);
+	private static void executePipeline(Pipeline pipeline) {
+		pipeline.accept(fooForkExec, fooPipe);
 
 	}
 
-	public static void printWelcome() {
-		System.out.println("Welcome to Minimal Shell! Features: <File, >File, cmd1 | cmd2");
+	private static String input() throws ExitShellException {
+
+		try {
+			System.in.read();
+		} catch (IOException e) {
+			throw new Error();
+		}
+		// TODO
+		return "ls | cat";
 	}
 
+	private static void printPrompt() {
+		System.out.println(">");
+	}
+
+	private static void printWelcome() {
+		System.out.println("Welcome!");
+	}
 }
