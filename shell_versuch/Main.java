@@ -26,7 +26,9 @@ class Main {
 	**************************************
 	* waitpid Info:
 	* 
-	* PIDs seem not to be recycled until they been "waitpid()"ed from parent.
+	* Childs remain in a 'Zombie' state until "wait_()"
+	*
+	* That means, PIDs are unique until wait_()
 	* 
 	* 
 	**/
