@@ -35,14 +35,39 @@ class Main {
 	
 	private final static int CHILD = 0;
 
+	
+	/**
+	* Loop design:	prompt + Input
+	* 		parsing (throw Syntax/Grammar Exception)
+	*			- single command infos
+	*			- pipe infos
+	*		execute
+	* 			- create all pipes
+	*			- fork
+	* 			- attach pipes
+	*			- file handles
+	*			- execv
+	*				- close unused ends
+	*				- else print.err, close pipes and handles
+	*
+	**/
 	public static void main(String[] args) {
 		printWelcome();
 		for (;;) {
 			try {
+				// GUI
 				printPrompt();
-				var userInput = input();
-				var allExecutables = convertCommandString(userInput);
-				executeAll(allExecutables);
+				final var userInput = input();
+				
+				// Parsing
+				final var pl = new Pipeline(userInput);
+				
+				// Launching Pipes, FileReaders, FileWriters and Executing
+				launchPipeline(pl);
+				
+				// waiting for all to return
+				waitAndFinishPipeline(pl);
+				
 			} catch (ExitShellException e) {
 				return;
 			} catch (Exception e) {
@@ -52,7 +77,19 @@ class Main {
 		}
 	}
 	
-
+	private static void launchPipeline(Pipeline pl){
+		pl.runEach((/*inStream*/null,)=>{
+			
+			
+			return new OutputSteam();
+		});
+	}
+	
+	private static void waitAndFinishPipeline(){
+		
+		
+	}
+			
 	private static String input() throws ExitShellException {
 
 		try {
