@@ -13,11 +13,21 @@ class Main {
 	**************************************
 	* Piping Info:
 	* 
+	* #include <unistd.h>
+	* 
 	* pipeFd = [read, write]
 	* 
 	* 1. pipe(int pipeFd[2]) Create Pipe
 	* 2. fork() Fork process
-	* 3. 
+	* 3. (close unused fds)
+	* 
+	* 
+	* 
+	**************************************
+	* waitpid Info:
+	* 
+	* PIDs seem not to be recycled until they been "waitpid()"ed from parent.
+	* 
 	* 
 	**/
 	
