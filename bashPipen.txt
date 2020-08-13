@@ -1,4 +1,0 @@
-1. delim ";" ergibt Befehlsketten
-2. delim "||","&&" zwischen terminierten Befehlensketten
-3. delim "|" verknüpft alten stdout mit neuem stdin
-4. "<a" bzw ">a" bzw "1>a" ändert stin/out für aktuellen befehl
