@@ -1,5 +1,5 @@
 public class Logging{
-	public final static int LVL = 0;
+	public static int LVL = 1;
         public final static int DEBUG = 0;
         public final static int INFO = 1;
         public final static int NORMAL = 2;

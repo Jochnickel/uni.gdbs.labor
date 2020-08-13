@@ -12,6 +12,10 @@ public class SimpleCommand{
 
 	public void run(Integer fdIn, Integer fdOut) throws Exception {
 		Logging.debug("%s run(1) %s",this, args[0]);
+		if(args[0].startsWith("$Logging=")){
+			Logging.LVL = Integer.parseInt(args[0].substring(9));
+			return;
+		}
 		if (args[0].isBlank()){
 			return;
 		}
@@ -29,8 +33,14 @@ public class SimpleCommand{
 			// i am child
 			Logging.debug("%s fdIn %d",this,fdIn);
                         Logging.debug("%s fdOut %d",this,fdOut);
-			if (null!=fdIn) System.setIn(new FdInputStream(fdIn));
-			if (null!=fdOut) System.setOut(new java.io.PrintStream(new FdOutputStream(fdOut)));
+			if (null!=fdIn){
+				KernelWrapper.close(KernelWrapper.STDIN_FILENO);
+				KernelWrapper.dup2(fdIn, KernelWrapper.STDIN_FILENO);
+			}
+			if (null!=fdOut){
+				KernelWrapper.close(KernelWrapper.STDOUT_FILENO);
+				KernelWrapper.dup2(fdOut, KernelWrapper.STDOUT_FILENO);
+			}
 			KernelWrapper.execv(execPath,args);
 			throw new Error();
 		}
