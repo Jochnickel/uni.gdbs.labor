@@ -34,7 +34,9 @@ public class SimpleCommand {
 	}
 	
 
-	public void run(Integer fdIn, Integer fdOut) {
+	public void run(Integer fdIn, Integer fdOut) throws Exception  {
+		final var execPath = findExecPath();
+		System.out.println(execPath);
 		final var forkedPid = KernelWrapper.fork();
 		if (forkedPid < 0) {
 			throw new Error("fork()");
@@ -60,8 +62,6 @@ public class SimpleCommand {
 			}
 			
 			try {
-				final var execPath = findExecPath();
-				System.out.println(execPath);
 				KernelWrapper.execv(execPath, args);
 			} catch (Exception e) {
 				if (null != fdIn) {
