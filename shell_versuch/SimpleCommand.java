@@ -4,12 +4,14 @@ import java.nio.file.Paths;
 //import TinyMatcher;
 
 public class SimpleCommand{
+	public final String str;
 	private final String[] args;
 	private final String overrideIn;
 	private final String overrideOut;
 	private Integer pid;
 	
 	public SimpleCommand(final String str){
+		this.str = str;
 		final var tmp = new TinyMatcher(str,">\\s*(\\S+)",">\\s*\\S+");
 		overrideOut = tmp.match;
 		final var tmp2 = new TinyMatcher(tmp.str,"<\\s*(\\S+)","<\\s*\\S+");
@@ -18,15 +20,6 @@ public class SimpleCommand{
 		args = tmp2.str.trim().split("\\s+");
 	}
 	
-	@Override
-	public String toString(){
-		try{
-			return getExecutablePath();
-		}catch(Exception e){
-			return args[0];
-		}
-	}
-
 	public boolean runAsInternal(){
 		if(args[0].isBlank()){
 			return true;

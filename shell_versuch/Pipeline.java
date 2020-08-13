@@ -25,7 +25,7 @@ public class Pipeline{
 		}
 		for(int i =0; i<commands.length;i++){
 			final var cmd = commands[i];
-			Logging.info("%s running cmd: %s",this,cmd);
+			Logging.info("%s running cmd: %s",this,cmd.str);
 			try{
 				cmd.run(fdRead[i], fdWrite[i]);
 			} catch( Exception e){
