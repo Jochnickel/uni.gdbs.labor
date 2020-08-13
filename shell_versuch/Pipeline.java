@@ -25,17 +25,9 @@ public class Pipeline {
 			commands[0].run();
 			return;
 		default:
-			for (int i = 0; i < pipes.length; i++) {
-				if (KernelWrapper.pipe(pipes[i]) < 0) {
-					throw new Error();
-				}
+			for (final var cmd : commands) {
+				cmd.run();
 			}
-			commands[0].run(null, pipes[0][WRITE]);
-			for (int i = 1; i < pipes.length; i++) {
-				commands[i].run(pipes[i - 1][READ], pipes[i][WRITE]);
-			}
-			commands[pipes.length].run(pipes[pipes.length - 1][READ], null);
-
 		}
 
 	}

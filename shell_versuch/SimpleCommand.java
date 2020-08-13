@@ -34,46 +34,8 @@ public class SimpleCommand {
 	}
 	
 
-	public void run(Integer fdIn, Integer fdOut) throws Exception  {
-		final var execPath = findExecPath();
-		System.out.println(execPath);
-		final var forkedPid = KernelWrapper.fork();
-		if (forkedPid < 0) {
-			throw new Error("fork()");
-		}
-		if (forkedPid > 0) {
-			// i am parent
-			pid = forkedPid;
-			if (null != fdIn) {
-				KernelWrapper.close(fdIn);
-			}
-			if (null != fdOut) {
-				KernelWrapper.close(fdOut);
-			}
-		} else {
-			// here is something
-			if (null != fdIn) {
-				final var inputStream = new FdInputStream(fdIn);
-				System.setIn(inputStream);
-			}
-			if (null != fdOut) {
-				final var outputStream = new FdOutputStream(fdOut);
-				System.setOut(new PrintStream(outputStream));
-			}
-			
-			try {
-				KernelWrapper.execv(execPath, args);
-			} catch (Exception e) {
-				if (null != fdIn) {
-					KernelWrapper.close(fdIn);
-				}
-				if (null != fdOut) {
-					KernelWrapper.close(fdOut);
-				}
-				throw new Error(e);
-			}
-			throw new Error("How did you get here?");
-		}
+	public void run(Integer fdIn, Integer fdOut) {
+		
 
 	}
 
