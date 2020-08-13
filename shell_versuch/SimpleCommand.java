@@ -43,6 +43,7 @@ public class SimpleCommand {
 			pid = forkedPid;
 		} else {
 			KernelWrapper.execv("/bin/ls",new String[] {"ls","/",null});
+			throw new Error("wtf");
 		}		
 	}
 
