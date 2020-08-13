@@ -4,10 +4,17 @@ import java.nio.file.Paths;
 
 public class SimpleCommand{
 	private final String[] args;
+	private final String overrideIn;
+	private final String overrideOut;
 	private Integer pid;
-
+	
 	public SimpleCommand(String str){
-		args = str.trim().split("\\s+");
+		final var tmp = TinyMatcher(str,">\\s*(\\S+)",">\\s*\\S+");
+		overrideOut = tmp.match;
+		final var tmp2 = TinyMatcher(tmp.str,"<\\s*(\\S+)","<\\s*\\S+");
+		overrideIn = tmp2.match;
+		
+		args = tmp2.str.trim().split("\\s+");
 	}
 
 	public void run(Integer fdIn, Integer fdOut) throws Exception {
@@ -33,14 +40,25 @@ public class SimpleCommand{
 			// i am child
 			Logging.debug("%s fdIn %d",this,fdIn);
                         Logging.debug("%s fdOut %d",this,fdOut);
-			if (null!=fdIn){
+
+			if (null!=overrideIn){
+                        	fdIn = KernelWrapper.open(overrideIn,KernelWrapper.O_RDONLY);
+				if (fdIn<0) throw new Error();
+			}
+                        if (null!=overrideOut){
+                                fdOut = KernelWrapper.open(overrideOut,KernelWrapper.O_WRONLY);
+                        	if (fdOut<0) throw new Error();
+			}
+
+                        if (null!=fdIn){
 				KernelWrapper.close(KernelWrapper.STDIN_FILENO);
 				KernelWrapper.dup2(fdIn, KernelWrapper.STDIN_FILENO);
 			}
-			if (null!=fdOut){
+                        if (null!=fdOut){
 				KernelWrapper.close(KernelWrapper.STDOUT_FILENO);
 				KernelWrapper.dup2(fdOut, KernelWrapper.STDOUT_FILENO);
 			}
+
 			KernelWrapper.execv(execPath,args);
 			throw new Error();
 		}
