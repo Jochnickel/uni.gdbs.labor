@@ -1,3 +1,4 @@
+import cTools.KernelWrapper;
 
 public class Pipeline{
 	
@@ -12,8 +13,20 @@ public class Pipeline{
 
 	public void run() throws Exception{
 		//TODO
-		for(var cmd : commands){
-			cmd.run();
+		var fdRead = new Integer[commands.length];
+		var fdWrite = new Integer[commands.length];
+		for(int i=0; i<commands.length-1;i++){
+			int[] fd = new int[2];
+			if(KernelWrapper.pipe(fd)<0){
+				throw new Error();
+			}
+			fdRead[i+1] = fd[0];
+                        fdWrite[i] = fd[1];
+		}
+		for(int i =0; i<commands.length;i++){
+			final var cmd = commands[i];
+			Logging.debug("running cmd %s",cmd);
+			cmd.run(fdRead[i], fdWrite[i]);
 		}
 	}
 

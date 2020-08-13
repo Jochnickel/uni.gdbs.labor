@@ -18,7 +18,10 @@ public class Main {
 			
 		} catch (ExitShellException e){
 			return;
+		} catch (CommandNotFoundException e){
+			System.out.println(e.getMessage());
 		} catch (Exception e){
+			e.printStackTrace();
 		}
 	}
 

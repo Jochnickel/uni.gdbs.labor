@@ -1,22 +1,23 @@
 import cTools.KernelWrapper;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-public class SimpleCommand{
 
+public class SimpleCommand{
 	private final String[] args;
 	private Integer pid;
 
 	public SimpleCommand(String str){
-		args = str.split("\\s+");
+		args = str.trim().split("\\s+");
 	}
 
 	public void run(Integer fdIn, Integer fdOut) throws Exception {
-		final var execPath = getExecutablePath();
-                if (execPath.isBlank()){
+		Logging.debug("%s run(1) %s",this, args[0]);
+		if (args[0].isBlank()){
 			return;
 		}
+                final var execPath = getExecutablePath();
+                Logging.debug("%s run(2) %s",this, execPath);
 		final var forkedPid = KernelWrapper.fork();
-                
 		if(forkedPid<0){
 			throw new Error();
 		} else if (forkedPid>0){
@@ -26,9 +27,10 @@ public class SimpleCommand{
 			if (null!=fdOut) KernelWrapper.close(fdOut);
 		} else {
 			// i am child
-			System.out.println(execPath);
-			System.setIn(new FdInputStream());
-			System.setOut(new java.io.PrintStream(new FdOutputStream()));
+			Logging.debug("%s fdIn %d",this,fdIn);
+                        Logging.debug("%s fdOut %d",this,fdOut);
+			if (null!=fdIn) System.setIn(new FdInputStream(fdIn));
+			if (null!=fdOut) System.setOut(new java.io.PrintStream(new FdOutputStream(fdOut)));
 			KernelWrapper.execv(execPath,args);
 			throw new Error();
 		}
@@ -63,6 +65,6 @@ public class SimpleCommand{
 				return path.toString();
 			}
 		}
-		throw new Exception("Executable not found");
+		throw new CommandNotFoundException(String.format("Command not found: %s",args[0]));
 	}
 }
