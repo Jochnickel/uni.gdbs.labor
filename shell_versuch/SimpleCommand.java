@@ -1,6 +1,7 @@
 import cTools.KernelWrapper;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+//import TinyMatcher;
 
 public class SimpleCommand{
 	private final String[] args;
@@ -9,9 +10,9 @@ public class SimpleCommand{
 	private Integer pid;
 	
 	public SimpleCommand(String str){
-		final var tmp = TinyMatcher(str,">\\s*(\\S+)",">\\s*\\S+");
+		final var tmp = new TinyMatcher(str,">\\s*(\\S+)",">\\s*\\S+");
 		overrideOut = tmp.match;
-		final var tmp2 = TinyMatcher(tmp.str,"<\\s*(\\S+)","<\\s*\\S+");
+		final var tmp2 = new TinyMatcher(tmp.str,"<\\s*(\\S+)","<\\s*\\S+");
 		overrideIn = tmp2.match;
 		
 		args = tmp2.str.trim().split("\\s+");
@@ -42,11 +43,11 @@ public class SimpleCommand{
                         Logging.debug("%s fdOut %d",this,fdOut);
 
 			if (null!=overrideIn){
-                        	fdIn = KernelWrapper.open(overrideIn,KernelWrapper.O_RDONLY);
+                        	fdIn = KernelWrapper.open(overrideIn,KernelWrapper.O_RDONLY | KernelWrapper.O_CREAT);
 				if (fdIn<0) throw new Error();
 			}
                         if (null!=overrideOut){
-                                fdOut = KernelWrapper.open(overrideOut,KernelWrapper.O_WRONLY);
+                                fdOut = KernelWrapper.open(overrideOut,KernelWrapper.O_WRONLY | KernelWrapper.O_CREAT);
                         	if (fdOut<0) throw new Error();
 			}
 
