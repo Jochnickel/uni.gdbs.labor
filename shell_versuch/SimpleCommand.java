@@ -18,15 +18,30 @@ public class SimpleCommand{
 		args = tmp2.str.trim().split("\\s+");
 	}
 
+	public boolean runAsInternal(){
+		if(args[0].isBlank()){
+			return true;
+		}
+		if(args[0].startsWith("$log=")){
+                        Logging.LVL = Integer.parseInt(args[0].substring(5));
+                        return true;
+                }
+//                final var m = new TinyMatcher(args[0], "cd\\s+(\\S+)","");
+                if ("cd".equals(args[0])){
+			var value = (args.length>1) ? args[1] : System.getProperty("user.home");
+                	synchronized(Main.dir){
+				Main.dir = Main.dir.resolve(value).normalize();
+			}
+			Logging.debug("%s Changed dir", this);
+			return true;
+                }
+		return false;
+	}
+
 	public void run(Integer fdIn, Integer fdOut) throws Exception {
 		Logging.debug("%s run(1) %s",this, args[0]);
-		if(args[0].startsWith("$log=")){
-			Logging.LVL = Integer.parseInt(args[0].substring(5));
+		if (runAsInternal())
 			return;
-		}
-		if (args[0].isBlank()){
-			return;
-		}
                 final var execPath = getExecutablePath();
                 Logging.debug("%s run(2) %s",this, execPath);
 		final var forkedPid = KernelWrapper.fork();
@@ -60,6 +75,7 @@ public class SimpleCommand{
 				KernelWrapper.dup2(fdOut, KernelWrapper.STDOUT_FILENO);
 			}
 
+			
 			KernelWrapper.execv(execPath,args);
 			throw new Error();
 		}

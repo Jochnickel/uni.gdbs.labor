@@ -1,14 +1,19 @@
 public class Main {
-
+	public static java.nio.file.Path dir = java.nio.file.Paths.get("").toAbsolutePath();
 	public static void main(String... args){
+//		Logging.LVL = 0;
+//		Logging.debug(args.length);
 		printWelcome();
 		for(;;) try{
 			// GUI
 			printPrompt();
 			final var userInput = input();
 			
+			// Filter
+			final var cmd = treatUserInput(userInput);
+
 			// Parse
-			final var pipeline = new Pipeline(userInput);
+			final var pipeline = new Pipeline(cmd);
 
 			// Exec
 			pipeline.run();
@@ -29,7 +34,12 @@ public class Main {
 		System.out.println("Welcome to Minimal Shell!");
 	}
 	public static void printPrompt(){
-		System.out.print(">_");
+		System.out.print(dir+">_");
+	}
+	public static String treatUserInput(String inp) throws Exception{
+		inp = inp.strip();
+		return inp;
+
 	}
 	public static String input() throws ExitShellException{
 		var scanner = new java.util.Scanner(System.in);
