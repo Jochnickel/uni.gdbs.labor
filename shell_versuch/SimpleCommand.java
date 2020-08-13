@@ -1,50 +1,25 @@
-import java.io.PrintStream;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-
 import cTools.KernelWrapper;
 
 public class SimpleCommand {
 	private Integer pid;
-	private final String str;
-	private String[] args;
-	
+	private final String[] args = new String[] { "ls", "/", null };
+	private final String execPath = "/bin/ls";
+
 	public SimpleCommand(String string) {
-		this.str = string;
-		//TODO
-		this.args = string.split("\\s+");
+//		this.args = string.split("\\s+");
 	}
-	
-	public String findExecPath() throws Exception {
-		if(args[0].contains("/")) {
-			/* User wants to exec a specific file */
-			if (Files.isExecutable(Paths.get(args[0]))) {
-				return args[0];
-			} else {
-				throw new Exception("No such file");
-			}
-		}
-		for (String dir : System.getenv("PATH").split(":")) {
-			final var path = Paths.get(dir,args[0]);
-			if(Files.isExecutable(path)) {
-				return path.toAbsolutePath().toString();
-			}
-		}
-		throw new Exception("Command not found");
-	}
-	
 
 	public void run(Integer fdIn, Integer fdOut) {
 		final var forkedPid = KernelWrapper.fork();
-		if(forkedPid<0) {
+		if (forkedPid < 0) {
 			throw new Error();
 		}
-		if(forkedPid>0) {
+		if (forkedPid > 0) {
 			pid = forkedPid;
 		} else {
-			KernelWrapper.execv("/bin/ls",new String[] {"ls","/",null});
+			KernelWrapper.execv("/bin/ls", new String[] { "ls", "/", null });
 			System.exit(1);
-		}		
+		}
 	}
 
 	public void run() {
