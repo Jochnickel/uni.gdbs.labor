@@ -51,14 +51,18 @@ public class SimpleCommand {
 		} else {
 			// here is something
 			if (null != fdIn) {
-				System.setIn(new FdInputStream(fdIn));
+				final var inputStream = new FdInputStream(fdIn);
+				System.setIn(inputStream);
 			}
 			if (null != fdOut) {
-				System.setOut(new PrintStream(new FdOutputStream(fdOut)));
+				final var outputStream = new FdOutputStream(fdOut);
+				System.setOut(new PrintStream(outputStream));
 			}
 			
 			try {
-				KernelWrapper.execv(findExecPath(), args);
+				final var execPath = findExecPath();
+				System.out.println(execPath);
+				KernelWrapper.execv(execPath, args);
 			} catch (Exception e) {
 				if (null != fdIn) {
 					KernelWrapper.close(fdIn);
@@ -78,8 +82,7 @@ public class SimpleCommand {
 	}
 
 	public void join() {
-		// TODO Auto-generated method stub
-
+		KernelWrapper.waitpid(pid, new int[1], 0);
 	}
 
 }

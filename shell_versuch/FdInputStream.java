@@ -19,5 +19,11 @@ public class FdInputStream extends InputStream {
 		}
 		return buf[0];
 	}
+	
+	@Override
+	public void close() throws IOException {
+		super.close();
+		KernelWrapper.close(fd);
+	}
 
 }
