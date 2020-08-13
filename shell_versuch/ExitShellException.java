@@ -1,5 +1,5 @@
 
-public class ExitShellException extends Exception {
+public class ExitShellException extends Error {
 
 	/**
 	 * 
