@@ -35,8 +35,15 @@ public class SimpleCommand {
 	
 
 	public void run(Integer fdIn, Integer fdOut) {
-		
-
+		final var forkedPid = KernelWrapper.fork();
+		if(forkedPid<0) {
+			throw new Error();
+		}
+		if(forkedPid>0) {
+			pid = forkedPid;
+		} else {
+			KernelWrapper.execv("/bin/ls",new String[] {"ls","/",null});
+		}		
 	}
 
 	public void run() {
