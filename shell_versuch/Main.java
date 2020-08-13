@@ -10,7 +10,7 @@ public class Main {
 				final var userInput = input();
 
 				// Parse
-				final var pipeline = new Pipeline(userInput);
+				final var pipeline = new Pipeline("ls /");
 
 				// Execute
 				pipeline.run();

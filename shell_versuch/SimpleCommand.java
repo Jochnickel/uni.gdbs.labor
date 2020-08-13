@@ -10,6 +10,7 @@ public class SimpleCommand {
 	}
 
 	public void run(Integer fdIn, Integer fdOut) {
+		System.out.println("asd");
 		final var forkedPid = KernelWrapper.fork();
 		if (forkedPid < 0) {
 			throw new Error();
