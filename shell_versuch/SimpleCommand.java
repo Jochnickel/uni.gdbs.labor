@@ -61,7 +61,7 @@ public class SimpleCommand {
 				KernelWrapper.execv(findExecPath(), args);
 			} catch (Exception e) {
 				if (null != fdIn) {
-					cTools.close(fdIn);
+					KernelWrapper.close(fdIn);
 				}
 				if (null != fdOut) {
 					KernelWrapper.close(fdOut);

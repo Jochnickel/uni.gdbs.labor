@@ -2,7 +2,7 @@
 import java.io.IOException;
 import java.io.OutputStream;
 
-import Dummy.cTools;
+import cTools.KernelWrapper;
 
 public class FdOutputStream extends OutputStream {
 	final int fd;
@@ -14,7 +14,7 @@ public class FdOutputStream extends OutputStream {
 	@Override
 	public void write(int b) throws IOException {
 		final var buf = new byte[1];
-		if (cTools.write(fd, buf, 1) != 1) {
+		if (KernelWrapper.write(fd, buf, 1) != 1) {
 			throw new IOException();
 		}
 	}

@@ -28,8 +28,9 @@ public class Main {
 	}
 
 
-	private static String input() throws ExitShellException {
+	private static String input() throws Exception {
 		// TODO
+		System.in.read();
 		return "ls -all | cat >";
 	}
 
