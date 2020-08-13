@@ -1,8 +1,5 @@
 public class Main {
-	public static java.nio.file.Path dir = java.nio.file.Paths.get("").toAbsolutePath();
 	public static void main(String... args){
-//		Logging.LVL = 0;
-//		Logging.debug(args.length);
 		printWelcome();
 		for(;;) try{
 			// GUI
@@ -31,18 +28,22 @@ public class Main {
 	}
 
 	public static void printWelcome(){
-		System.out.println("Welcome to Minimal Shell! (type help)");
+		System.out.println("Welcome to Minimal Shell!");
 	}
 	public static void printPrompt(){
-		System.out.printf("%s>_",dir);
+		System.out.print(System.getProperty("user.home")+">_");
 	}
 	public static String treatUserInput(String inp) throws Exception{
-		return inp
-			.strip()
-			.replace("$$",String.valueOf(ProcessHandle.current().pid()))
-                        .replace("$..",dir.resolve("..").toAbsolutePath().toString())
-			.replace("$.",dir.toAbsolutePath().toString());
-		//return inp;
+		inp = inp.strip();
+		if(inp.startsWith("$log=")){
+                        Logging.LVL = Integer.parseInt(inp.substring(5));
+                        throw new CommandNotFoundException("");
+                }
+		final var m = new TinyMatcher(inp, "cd\\s+(\\S+)","");
+		if (m.hasMatch){
+			main(
+		}
+		return inp;
 
 	}
 	public static String input() throws ExitShellException{

@@ -9,7 +9,7 @@ public class SimpleCommand{
 	private final String overrideOut;
 	private Integer pid;
 	
-	public SimpleCommand(String str){
+	public SimpleCommand(final String str){
 		final var tmp = new TinyMatcher(str,">\\s*(\\S+)",">\\s*\\S+");
 		overrideOut = tmp.match;
 		final var tmp2 = new TinyMatcher(tmp.str,"<\\s*(\\S+)","<\\s*\\S+");
@@ -17,13 +17,26 @@ public class SimpleCommand{
 		
 		args = tmp2.str.trim().split("\\s+");
 	}
+	
+	@Override
+	public String toString(){
+		try{
+			return getExecutablePath();
+		}catch(Exception e){
+			return args[0];
+		}
+	}
 
 	public boolean runAsInternal(){
 		if(args[0].isBlank()){
 			return true;
 		}
-		if(args[0].startsWith("$log=")){
-                        Logging.LVL = Integer.parseInt(args[0].substring(5));
+		if("help".equals(args[0])){
+			System.out.println("Internal Commands:\n\n help\n log=n\n cd\n cd ..\n ls $.\n ls $.. (cd is actually not working correct)\n");
+			return true;
+		}
+		if(args[0].startsWith("log=")){
+                        Logging.LVL = Integer.parseInt(args[0].substring(4));
                         return true;
                 }
 //                final var m = new TinyMatcher(args[0], "cd\\s+(\\S+)","");
