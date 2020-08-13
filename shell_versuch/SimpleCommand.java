@@ -2,7 +2,7 @@ import java.io.PrintStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import Dummy.cTools;
+import cTools.KernelWrapper;
 
 public class SimpleCommand {
 	private Integer pid;
@@ -35,7 +35,7 @@ public class SimpleCommand {
 	
 
 	public void run(Integer fdIn, Integer fdOut) {
-		final var forkedPid = cTools.fork();
+		final var forkedPid = KernelWrapper.fork();
 		if (forkedPid < 0) {
 			throw new Error("fork()");
 		}
@@ -43,10 +43,10 @@ public class SimpleCommand {
 			// i am parent
 			pid = forkedPid;
 			if (null != fdIn) {
-				cTools.close(fdIn);
+				KernelWrapper.close(fdIn);
 			}
 			if (null != fdOut) {
-				cTools.close(fdOut);
+				KernelWrapper.close(fdOut);
 			}
 		} else {
 			// here is something
@@ -58,13 +58,13 @@ public class SimpleCommand {
 			}
 			
 			try {
-				cTools.execv(findExecPath(), args);
+				KernelWrapper.execv(findExecPath(), args);
 			} catch (Exception e) {
 				if (null != fdIn) {
 					cTools.close(fdIn);
 				}
 				if (null != fdOut) {
-					cTools.close(fdOut);
+					KernelWrapper.close(fdOut);
 				}
 				throw new Error(e);
 			}

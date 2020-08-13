@@ -1,7 +1,7 @@
 import java.io.IOException;
 import java.io.InputStream;
 
-import Dummy.cTools;
+import cTools.KernelWrapper;
 
 public class FdInputStream extends InputStream {
 
@@ -14,7 +14,7 @@ public class FdInputStream extends InputStream {
 	@Override
 	public int read() throws IOException {
 		final var buf = new byte[1];
-		if (cTools.read(fd, buf, 1) != 1) {
+		if (KernelWrapper.read(fd, buf, 1) != 1) {
 			throw new IOException();
 		}
 		return buf[0];

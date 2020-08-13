@@ -1,4 +1,4 @@
-import Dummy.cTools;
+import cTools.KernelWrapper;
 
 public class Pipeline {
 	private final static int READ = 0;
@@ -26,7 +26,7 @@ public class Pipeline {
 			return;
 		default:
 			for (int i = 0; i < pipes.length; i++) {
-				if (cTools.pipe(pipes[i]) < 0) {
+				if (KernelWrapper.pipe(pipes[i]) < 0) {
 					throw new Error();
 				}
 			}
