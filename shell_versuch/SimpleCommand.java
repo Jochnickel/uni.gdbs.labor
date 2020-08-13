@@ -12,8 +12,8 @@ public class SimpleCommand{
 
 	public void run(Integer fdIn, Integer fdOut) throws Exception {
 		Logging.debug("%s run(1) %s",this, args[0]);
-		if(args[0].startsWith("$Logging=")){
-			Logging.LVL = Integer.parseInt(args[0].substring(9));
+		if(args[0].startsWith("$log=")){
+			Logging.LVL = Integer.parseInt(args[0].substring(5));
 			return;
 		}
 		if (args[0].isBlank()){

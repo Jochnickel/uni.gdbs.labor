@@ -11,7 +11,7 @@ public class Pipeline{
 		}
 	}
 
-	public void run() throws Exception{
+	public void run() throws Exception {
 		//TODO
 		var fdRead = new Integer[commands.length];
 		var fdWrite = new Integer[commands.length];
