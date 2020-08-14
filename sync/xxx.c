@@ -41,7 +41,7 @@ void test_end(void) {
 //-----------------------------------------------------------------------------
 
 void reader(long my_id) {
-	puts("reader");
+	puts("READER");
 	for(int i = 1;i<LIMIT;i++){
 		// hufe scharren
 		sem_p(sammy);
