@@ -26,7 +26,7 @@ void test_setup(void) {
   printf("Test Setup\n");
   readers=5;
   writers=1;
-  readersAreRdy = sem_init(1-readers);
+  readersAreRdy = sem_init(1);
   writerDone = sem_init(0);
 }
 
