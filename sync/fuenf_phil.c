@@ -30,6 +30,8 @@ void test_setup(void) {
   readers=0;
   writers=5;
   srandom(time(NULL));
+
+  sammy = sem_init(1);
 }
 
 //-----------------------------------------------------------------------------
