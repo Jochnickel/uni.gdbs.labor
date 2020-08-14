@@ -15,7 +15,8 @@
 #define LIMIT 10000
 
 volatile int increase_me = 0;
-volatile semaphore sammy;
+volatile semaphore readerRdy;
+volatile semaphore writerDone;
 
 //-----------------------------------------------------------------------------
 // bevor der test beginnt wird test_setup() einmal aufgerufen
