@@ -12,8 +12,9 @@
 // alle unbedingt mit "volatile" !!!
 //-----------------------------------------------------------------------------
 
-volatile int increase_me = 0;
+#define MX 10000;
 
+volatile int increase_me = 0;
 volatile semaphore sammy;
 
 //-----------------------------------------------------------------------------
