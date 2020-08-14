@@ -23,4 +23,4 @@
 ## Lösung
  
  Es wird eine Semaphore implementiert, es kann jetzt nurnoch 1 Writer gleichzeitig agieren.
- Der kritische Abschnitt beinhaltet den check, ob man dem Reader auf die Stoßstange fährt, den Write-Vorgang und Zeiger-Inkrement.
+ Der kritische Abschnitt beinhaltet den check, ob man dem qReader auf die Stoßstange fährt, den Write-Vorgang und Zeiger-Inkrement.
