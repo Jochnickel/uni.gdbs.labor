@@ -31,7 +31,8 @@ void test_setup(void) {
   writers=5;
   srandom(time(NULL));
 
-  sammy = sem_init(1);
+  for(int i=0;i<5;i++)
+  sammy[i] = sem_init(1);
 }
 
 //-----------------------------------------------------------------------------
