@@ -79,7 +79,7 @@ void test_setup(void) {
 
   // yay, semahpore
   kr_ab_semaphore = sem_init(1);
-  
+  que_semaphore = sem_init(writers);
 }
 
 //-----------------------------------------------------------------------------
