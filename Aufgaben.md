@@ -47,13 +47,12 @@
   Es werden 2 Semaphoren benötigt.
   Schaubild:
               reader sem1 sem2 writer
-
                      ---- XXXX
                      XXXX XXXX p(sem1)
                      XXXX XXXX global++;
-                     XXXX ____ v(sem2)
-             p(sem1) XXXX XXXX
-                     XXXX OOOO
+                     XXXX ---- v(sem2)
+             p(sem2) XXXX XXXX
+             compare XXXX OOOO
                      OOOO XXXX
                      OOOO XXXX
                      OOOO XXXX
