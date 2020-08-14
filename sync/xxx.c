@@ -48,7 +48,7 @@ void reader(long my_id) {
 
 		// arbeit arbeit
 		if(i!=increase_me){
-			puts("Nein Nein Nein");
+			perror("Nein Nein Nein");
 			exit(1);
 		}
 		// zufrieden einschlafen
