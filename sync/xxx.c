@@ -45,7 +45,7 @@ void test_end(void) {
 void reader(long my_id) {
 	for(int i = 1;i<LIMIT;i++){
 		// hufe scharren
-		sem_v(readersAreRdy);
+//		sem_v(readersAreRdy);
 		sem_p(writerDone);
 
 		// arbeit arbeit
