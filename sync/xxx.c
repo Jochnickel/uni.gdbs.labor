@@ -25,7 +25,7 @@ void test_setup(void) {
   printf("Test Setup\n");
   readers=1;
   writers=1;
-  sammy = sem_init(1);
+  sammy = sem_init(0);
 }
 
 //-----------------------------------------------------------------------------
