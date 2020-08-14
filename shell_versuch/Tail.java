@@ -11,34 +11,39 @@ public class Tail {
 			var amt = -10;
 			final var filenames = new LinkedList<String>();
 			for (int i = 0; i < args.length; i++) {
-				switch (args[i]) {
-				case "-n":
+
+				if (args[i].matches("-n[+-]?\\d*")) {
 					amt = handleMinusN(args, i);
-					break;
-				case "--help":
+
+				} else if ("--help".equals(args[i])) {
 					printHelp();
-					KernelWrapper.exit(0);
-					break;
-				case "":
-					break;
-				default:
+					throw new RuntimeException();
+
+				} else if (args[i].isBlank()) {
+
+				} else {
 					filenames.add(args[i]);
-					break;
+
 				}
 			}
 
 			if (filenames.size() < 1) {
 				tailSingle(amt, STDIN);
+
 			} else if (filenames.size() < 2) {
 				tailSingle(amt, filenames.element());
+
 			} else {
 				tailAll(amt, filenames);
+
 			}
 		} catch (Error e) {
 			System.err.println(e.getMessage());
 			KernelWrapper.exit(1);
-		} catch (Exception e) {
+
+		} catch (RuntimeException e) {
 			KernelWrapper.exit(0);
+
 		}
 		KernelWrapper.exit(0);
 	}
@@ -48,45 +53,56 @@ public class Tail {
 		if (amt >= 0) {
 			// skip first n lines
 			try {
-				for (; amt > 1; amt--)// start at 1st line
+				for (; amt > 1; amt--) {// start at 1st line
 					scanner.nextLine();
-				for (;; System.out.println(scanner.nextLine()))
-					;
+				}
+				for (;;) {
+					System.out.println(scanner.nextLine());
+				}
 			} catch (Exception e) {
 			}
 		} else {
 			// repeat last n lines
 			final var list = new LinkedList<String>();
 			try {
-				for (; list.size() < -amt;)
+				for (; list.size() < -amt;) {
 					list.add(scanner.nextLine());
-				for (;; list.removeFirst())
+				}
+				for (;; list.removeFirst()) {
 					list.add(scanner.nextLine());
+				}
 			} catch (Exception e) {
 			}
-			for (final var str : list)
+			for (final var str : list) {
 				System.out.println(str);
+			}
 		}
 		scanner.close();
 	}
 
+	/**
+	 * moves the seeker until n newlines have been passed The pointer is points like
+	 * we just read a byte
+	 * 
+	 * 
+	 * @param amt The amount of new lines until we return. Negative = backwards
+	 * @param fd
+	 */
 	private static void seekNNewLines(int amt, final int fd) {
 		for (; amt != 0;) {
 			final var b = new byte[1];
 
 			if (amt < 0) {
-				KernelWrapper.lseek(fd, -1, KernelWrapper.SEEK_CUR);
-				KernelWrapper.lseek(fd, -1, KernelWrapper.SEEK_CUR);
+				KernelWrapper.lseek(fd, -2, KernelWrapper.SEEK_CUR);
 			}
 			final var readBytes = KernelWrapper.read(fd, b, 1);
-			if (amt < 0) {
-			}
 
 			if (readBytes < 0) {
 				throw new Error();
-			}
-			if (readBytes < 1)
+
+			} else if (readBytes < 1) {
 				return;
+			}
 
 			if ('\n' == b[0]) {
 				if (amt > 0) {
@@ -98,6 +114,12 @@ public class Tail {
 		}
 	}
 
+	/**
+	 * Tailing a single file (or stdin) for n lines
+	 * 
+	 * @param amt
+	 * @param filename
+	 */
 	private static void tailSingle(final int amt, final String filename) {
 		if (STDIN.equals(filename)) {
 			tailStdIn(amt);
@@ -121,6 +143,12 @@ public class Tail {
 		}
 	}
 
+	/**
+	 * Tailing a list of files for n lines
+	 * 
+	 * @param amt
+	 * @param filenames
+	 */
 	private static void tailAll(int amt, final LinkedList<String> filenames) {
 		for (final var fn : filenames) {
 			System.out.printf("==> %s <==", STDIN.equals(fn) ? "standard input" : fn);
@@ -128,12 +156,19 @@ public class Tail {
 		}
 	}
 
+	/**
+	 * Handles an -n on the incoming arguments
+	 * 
+	 * 
+	 * @param args
+	 * @param index
+	 * @return
+	 */
 	private static int handleMinusN(final String[] args, final int index) {
 		try {
 			final var value = args[index + 1].matches("\\d.*") ? "-" + args[index + 1] : args[index + 1];
 			if ("-0".equals(value)) {
-				KernelWrapper.exit(0);
-				System.exit(0);
+				throw new RuntimeException();
 			}
 			args[index] = "";
 			args[index + 1] = "";

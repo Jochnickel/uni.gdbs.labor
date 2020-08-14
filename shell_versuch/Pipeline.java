@@ -13,7 +13,6 @@ public class Pipeline {
 	}
 
 	public void run() throws Exception {
-		// TODO
 		var fdRead = new Integer[commands.length];
 		var fdWrite = new Integer[commands.length];
 		for (int i = 0; i < commands.length - 1; i++) {
@@ -36,7 +35,6 @@ public class Pipeline {
 	}
 
 	public void join() {
-		// TODO
 		for (var cmd : commands) {
 			cmd.join();
 		}

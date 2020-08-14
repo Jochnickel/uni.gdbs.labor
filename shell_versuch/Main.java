@@ -5,7 +5,7 @@ public class Main {
 //		Logging.LVL = 0;
 //		Logging.debug(args.length);
 		printWelcome();
-		for (;;)
+		for (;;) {
 			try {
 				// GUI
 				printPrompt();
@@ -30,6 +30,7 @@ public class Main {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}
 	}
 
 	public static void printWelcome() {
