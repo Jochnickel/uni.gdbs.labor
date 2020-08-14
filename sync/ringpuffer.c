@@ -115,8 +115,8 @@ void writer(long my_id) {
        //do nothing
     }
     ringpuffer.feld[ringpuffer.schreib_index] = i;
-
     ringpuffer.schreib_index = (ringpuffer.schreib_index + 1) % SIZE;
+
     sem_v(kr_ab_semaphore);
 
 
