@@ -73,7 +73,5 @@ void writer(long long_my_id) {
 
 		// zufrieden einschlafen
 		sem_v(writerDone);
-
-
 	}
 }
