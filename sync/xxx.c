@@ -52,7 +52,6 @@ void reader(long my_id) {
    }
    ssem_v(sammy);
 
-   own_i++;
  }
 }
 
