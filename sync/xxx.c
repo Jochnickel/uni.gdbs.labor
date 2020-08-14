@@ -44,7 +44,7 @@ void reader(long my_id) {
    //hufe scharren
 
    //arbeit arbeit
-
+ }
 }
 
 
