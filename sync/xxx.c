@@ -53,7 +53,7 @@ void reader(long my_id) {
 		}
 		// zufrieden einschlafen
 		sem_v(sammy);
-		printf("%d matched");
+		printf("%d matched",i);
 
 	}
 }
