@@ -17,7 +17,7 @@
 volatile int staebchen[5]={1,1,1,1,1};
 volatile int have_one[5]={0,0,0,0,0}; // nur zur deadlock erkennung
 
-volatile int occupied[5] = {0,0,0,0,0};
+volatile int occupied[5] = {9,9,9,9,9};
 
 //-----------------------------------------------------------------------------
 // bevor der test beginnt wird test_setup() einmal aufgerufen
@@ -52,6 +52,7 @@ int staebchen_nehmen(int my_id, int pos) {
   int n=staebchen[pos];
   if (n==1) {
     printf("%i nimmt %i\n", my_id, pos);
+    occupied[pos] = my_id;
     staebchen[pos]--; // ergibt 0, gibt aber chance zur fehlererkennung
     return 1;
   } else if (n==0) {
