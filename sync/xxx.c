@@ -41,7 +41,7 @@ void test_end(void) {
 //-----------------------------------------------------------------------------
 
 void reader(long my_id) {
-
+	
 	for(int i = 1;i<10000;i++){
 		// hufe scharren
 		sem_p(sammy);
@@ -60,6 +60,7 @@ void reader(long my_id) {
 
 
 void writer(long long_my_id) {
+	increase_me++;
 	for(;;){
 		
 	}
