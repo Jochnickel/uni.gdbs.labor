@@ -46,7 +46,7 @@ public class Tail{
 
 	private static void tailStdIn(int amt){
 		final var scanner = new Scanner(System.in);
-		if(amt>0){
+		if(amt>=0){
 			// skip first n lines
 			try{
 				for(;amt>1;amt--)//start at 1st line
@@ -71,11 +71,12 @@ public class Tail{
 		for(;amt!=0;){
 			final var b = new byte[1];
 
-			if(amt<0)
+			if(amt<0){
 				KernelWrapper.lseek(fd,-1, KernelWrapper.SEEK_CUR);
-			final var readBytes = KernelWrapper.read(fd, b, 1);
-			if(amt<0)
                                 KernelWrapper.lseek(fd,-1, KernelWrapper.SEEK_CUR);
+			}
+			final var readBytes = KernelWrapper.read(fd, b, 1);
+			if(amt<0){}
 
 			if (readBytes<0){
 				throw new Error();
@@ -112,7 +113,7 @@ public class Tail{
 			if(KernelWrapper.read(fd, buf, strLen)!=strLen){
 				throw new Error();
 			}
-			System.out.println(new String(buf));
+			System.out.print(new String(buf));
 		}
 	}
 	private static void tailAll(int amt, final LinkedList<String> filenames){
