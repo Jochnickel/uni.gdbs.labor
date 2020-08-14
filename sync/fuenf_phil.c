@@ -19,7 +19,7 @@ volatile int have_one[5]={0,0,0,0,0}; // nur zur deadlock erkennung
 
 volatile int occupied[5] = {9,9,9,9,9};
 
-volatile semaphore sammy;
+volatile semaphore sammy[5];
 
 //-----------------------------------------------------------------------------
 // bevor der test beginnt wird test_setup() einmal aufgerufen
