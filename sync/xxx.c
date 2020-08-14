@@ -42,7 +42,7 @@ void reader(long my_id) {
  int own_i = 1;
  for(;;){
    //hufe scharren
-
+   sem_p(sammy);
    //arbeit arbeit
  }
 }
