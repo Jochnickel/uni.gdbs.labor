@@ -67,7 +67,6 @@ void writer(long long_my_id) {
 		sem_p(readersAreRdy);
 
 		increase_me++;
-		sem_v(writerDone);
 
 	}
 }
