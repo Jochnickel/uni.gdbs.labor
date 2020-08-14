@@ -55,8 +55,7 @@ int sum;
 // bevor der test beginnt wird test_setup() einmal aufgerufen
 //-----------------------------------------------------------------------------
 
-volatile semaphore kr_ab_semaphore;
-volatile semaphore que_semaphore;
+volatile semaphore mein_semaphor;
 
 void test_setup(void) {
   printf("Test Setup\n");
@@ -66,19 +65,19 @@ void test_setup(void) {
   ringpuffer.lese_index=0;
 
   readers=1; // maximal 1 (nicht veraendern!)
-  writers=3; // maximal 19
+  writers=3; // maximal 19 
 
   counter=0;
 
-
+  
   // zur Fehlererkennung
-  sum=0;
+  sum=0; 
 
   // dient der Visualisierung
   start_animation();
-
+  
   // yay, semahpore
-  kr_ab_semaphore = sem_init(1);
+  mein_semaphor = sem_init(1);
 }
 
 //-----------------------------------------------------------------------------
@@ -90,7 +89,7 @@ void test_end(void) {
 
   // testauswertung
   int expect = writers * ((NUMBERS_CREATED_PER_WRITER * NUMBERS_CREATED_PER_WRITER)+NUMBERS_CREATED_PER_WRITER)/2;
-
+  
   printf("Erwartete Summe=%i, erhalten=%i: ", expect, sum);
   if (expect == sum) {
     printf("Test ok\n");
@@ -111,10 +110,10 @@ void writer(long my_id) {
     while ((ringpuffer.schreib_index+1)%SIZE==ringpuffer.lese_index) {
        //do nothing
     }
-    //sem_p(mein_semaphor);
+    sem_p(mein_semaphor);
     ringpuffer.feld[ringpuffer.schreib_index] = i;
     ringpuffer.schreib_index = (ringpuffer.schreib_index + 1) % SIZE;
-    //sem_v(mein_semaphor);
+    sem_v(mein_semaphor);
 
 
     show_animation(1, my_id, i);
@@ -131,18 +130,18 @@ void reader(long my_id) {
   while (1) {
     // zaehlt die gelesenen zeichen
     counter++;
-
+    
     // busy wait:
     while (ringpuffer.schreib_index==ringpuffer.lese_index) {
        //do nothing
     }
-    //sem_p(mein_semaphor);
+    sem_p(mein_semaphor);
     int n=ringpuffer.feld[ringpuffer.lese_index];
     ringpuffer.lese_index = (ringpuffer.lese_index + 1) % SIZE;
-
-    //sem_v(mein_semaphor);
+       
+    sem_v(mein_semaphor);
     // summiert gelesenen Zahlen fuer die Testausgabe
-    sum+=n;
+    sum+=n; 
 
     if (counter==writers*NUMBERS_CREATED_PER_WRITER) { return; }
 
