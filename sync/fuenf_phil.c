@@ -17,6 +17,8 @@
 volatile int staebchen[5]={1,1,1,1,1};
 volatile int have_one[5]={0,0,0,0,0}; // nur zur deadlock erkennung
 
+volatile int occupied[5] = {0,0,0,0,0};
+
 //-----------------------------------------------------------------------------
 // bevor der test beginnt wird test_setup() einmal aufgerufen
 //-----------------------------------------------------------------------------
