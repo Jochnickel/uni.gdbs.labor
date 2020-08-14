@@ -22,4 +22,4 @@
   
 ## Lösung
  
- Es wird eine Semaphore implementiert, es kann jetzt nurnoch 1 Wriiter gleichzeitig agieren.
+ Es wird eine Semaphore implementiert, es kann jetzt nurnoch 1 Writer gleichzeitig agieren.
