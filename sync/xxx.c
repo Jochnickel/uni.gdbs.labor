@@ -51,6 +51,7 @@ void reader(long my_id) {
      exit(1);
    }
 
+   own_i++;
  }
 }
 
