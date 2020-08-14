@@ -54,7 +54,7 @@
              p(sem2) XXXX XXXX
              compare XXXX XXXX
              v(sem1) ---- XXXX
-                     ---- XXXX
+                     XXXX XXXX p(sem1)
                      ---- XXXX
                      OOOO XXXX
                      OOOO XXXX
