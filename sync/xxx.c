@@ -53,9 +53,10 @@ void reader(long my_id) {
 			exit(1);
 		}
 
-		// zufrieden einschlafen
+		// Feierabend
 		sem_v(readerRdy);
 
+		// Lebenspartner langweilen
 		printf("%d matched\n",i);
 
 	}
