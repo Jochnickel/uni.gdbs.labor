@@ -52,7 +52,7 @@ void reader(long my_id) {
 			exit(1);
 		}
 		// zufrieden einschlafen
-		ssem_v(sammy);
+		sem_v(sammy);
 
 	}
 }
