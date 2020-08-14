@@ -67,6 +67,7 @@ int staebchen_nehmen(int my_id, int pos) {
 void staebchen_weglegen(int my_id, int pos) {
   printf("%i legt %i weg\n", my_id, pos);
   occupied[pos]=9;
+  printf("[%,%d,%d,%d,%d]",*pos);
   if (staebchen[pos]!=0) {
     printf("Fehler: staebchen[%i]=%i statt 0\n", pos, staebchen[pos]);
     exit(1);
