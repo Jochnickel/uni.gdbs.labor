@@ -12,12 +12,7 @@
 // alle unbedingt mit "volatile" !!!
 //-----------------------------------------------------------------------------
 
-volatile int staebchen[5]={1,1,1,1,1};
-volatile int have_one[5]={0,0,0,0,0}; // nur zur deadlock erkennung
-
-// volatile int occupied[5] = {9,9,9,9,9};
-
-volatile semaphore sammy[5];
+volatile semaphore sammy;
 
 //-----------------------------------------------------------------------------
 // bevor der test beginnt wird test_setup() einmal aufgerufen
