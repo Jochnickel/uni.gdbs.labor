@@ -21,7 +21,7 @@ volatile semaphore sammy;
 void test_setup(void) {
   printf("Test Setup\n");
   readers=0;
-  writers=5;
+  writers=2;
 }
 
 //-----------------------------------------------------------------------------
