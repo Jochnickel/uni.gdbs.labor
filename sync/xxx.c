@@ -46,7 +46,7 @@ void reader(long my_id) {
 	for(int i = 1;i<LIMIT;i++){
 		// hufe scharren
 		sem_v(readerRdy);
-		sem_p(sammy);
+		sem_p(writerDone);
 
 		// arbeit arbeit
 		if(i!=increase_me){
