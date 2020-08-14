@@ -48,9 +48,10 @@
   Schaubild:
               reader sem1 sem2 writer
                      ---------
+                     OOOO XXXX
                      XXXX XXXX p(sem1)
                      XXXX XXXX global++;
-                     XXXX OOOO v
+                     XXXX OOOO v(sem2)
                    p XXXX OOOO
                      XXXX OOOO
                      OOOO XXXX
