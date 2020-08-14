@@ -40,6 +40,7 @@ void test_end(void) {
 
 void reader(long my_id) {
  int own_i = 1;
+ for(;;)
  //hufe scharren
 
  //arbeit arbeit
