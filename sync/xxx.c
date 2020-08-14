@@ -52,8 +52,9 @@ void reader(long my_id) {
 			perror("Nein Nein Nein");
 			exit(1);
 		}
-		sem_v(readerRdy);
 		// zufrieden einschlafen
+		sem_v(readerRdy);
+
 		printf("%d matched\n",i);
 
 	}
