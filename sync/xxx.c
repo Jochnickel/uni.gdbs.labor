@@ -24,7 +24,7 @@ volatile semaphore writerDone;
 
 void test_setup(void) {
   printf("Test Setup\n");
-  readers=1;
+  readers=5;
   writers=1;
   readerRdy = sem_init(0);
   writerDone = sem_init(0);
@@ -65,7 +65,6 @@ void writer(long long_my_id) {
 	for(;increase_me<LIMIT;){
 
 //		sem_p(readerRdy);
-//		sem_v(readerRdy);
 
 		increase_me++;
 		sem_v(writerDone);
