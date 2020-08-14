@@ -60,6 +60,7 @@ void reader(long my_id) {
 
 
 void writer(long long_my_id) {
-
-	for(;;);
+	for(;;){
+		
+	}
 }
