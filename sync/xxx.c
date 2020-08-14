@@ -15,7 +15,7 @@
 #define LIMIT 10000
 
 volatile int increase_me = 0;
-volatile semaphore readersAreRdy;
+volatile semaphore readerRdy;
 volatile semaphore writerDone;
 
 //-----------------------------------------------------------------------------
