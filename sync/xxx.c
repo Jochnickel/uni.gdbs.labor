@@ -6,8 +6,6 @@
 #include <unistd.h>
 #include <time.h>
 
-// AUFGABENSTELLUNG:
-// Bringen Sie diese Programm mittels Semaphoren in Ordnung.
 
 //-----------------------------------------------------------------------------
 // alle globalen variablen fuer die beiden worker hier definieren,
