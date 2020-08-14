@@ -22,3 +22,4 @@
   
 ## Lösung
  
+ Es wrden 2 Semaphoren implementiert, 1 für den kritischen Abschnitt, die andere, um auf jeden Writer zu warten.
