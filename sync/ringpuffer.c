@@ -137,11 +137,10 @@ void reader(long my_id) {
     while (ringpuffer.schreib_index==ringpuffer.lese_index) {
        //do nothing
     }
-    //sem_p(mein_semaphor);
+
     int n=ringpuffer.feld[ringpuffer.lese_index];
     ringpuffer.lese_index = (ringpuffer.lese_index + 1) % SIZE;
 
-    //sem_v(mein_semaphor);
     // summiert gelesenen Zahlen fuer die Testausgabe
     sum+=n;
 
