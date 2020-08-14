@@ -108,12 +108,14 @@ void writer(long my_id) {
   int i;
   for (i=1; i<=NUMBERS_CREATED_PER_WRITER; i++) {
 
+    sem_p(kr_ab_semaphore);
+
     // busy wait:
     while ((ringpuffer.schreib_index+1)%SIZE==ringpuffer.lese_index) {
        //do nothing
     }
-    sem_p(kr_ab_semaphore);
     ringpuffer.feld[ringpuffer.schreib_index] = i;
+
     ringpuffer.schreib_index = (ringpuffer.schreib_index + 1) % SIZE;
     sem_v(kr_ab_semaphore);
 
