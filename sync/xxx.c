@@ -37,8 +37,7 @@ void test_end(void) {
 //-----------------------------------------------------------------------------
 
 void reader(long my_id) {
-  printf("Wer hat mich da aufgerufen?\n");
-  exit(1);
+
 }
 
 
