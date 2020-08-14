@@ -45,6 +45,10 @@ void reader(long my_id) {
    //hufe scharren
    sem_p(sammy);
    //arbeit arbeit
+   if(own_i!=increase_me){
+     perror("Nein Nein Nein");
+     exit(1);
+   }
  }
 }
 
