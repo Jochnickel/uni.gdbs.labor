@@ -16,6 +16,7 @@ volatile int global_var=0;
 
 // semaphore deklariert man hier z.B. wie folgt:
 //   semaphore mein_semaphor;
+semaphore mein_semaphor;
 
 //-----------------------------------------------------------------------------
 // bevor der test beginnt wird test_setup() einmal aufgerufen
@@ -30,6 +31,7 @@ void test_setup(void) {
   writers=WORKERS;
   // initialisieren von sempahoren hier z.B. wie folgt:
   //   mein_semaphor = sem_init( ...irgend eine zahl hier ... );
+  mein_semaphor = sem_init(1);
 }
 
 //-----------------------------------------------------------------------------
@@ -62,7 +64,9 @@ void writer(long my_id) {
   int i;
   for (i=0; i<A_BIG_NUMBER; i++) {
     for (int x=0; x<888; x++); // "lange Rechnung"
-    global_var += 1;
+    sem_p(mein_semaphor);
+      global_var += 1;
+    sem_v(mein_semaphor);
     // printf("Worker1: %i\n", global_var);
   }
 }
