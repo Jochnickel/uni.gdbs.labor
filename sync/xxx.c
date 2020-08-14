@@ -42,23 +42,23 @@ void test_end(void) {
 
 void reader(long my_id) {
 
- for(int i = 1;i<10000;i++){
-  //hufe scharren
-  sem_p(sammy);
+	for(int i = 1;i<10000;i++){
+	//hufe scharren
+	sem_p(sammy);
 
-  //arbeit arbeit
-  if(own_i!=increase_me){
-    perror("Nein Nein Nein");
-    exit(1);
-  }
-  ssem_v(sammy);
+	//arbeit arbeit
+	if(own_i!=increase_me){
+	perror("Nein Nein Nein");
+	exit(1);
+	}
+	 ssem_v(sammy);
 
- }
+	}
 }
 
 
 
 void writer(long long_my_id) {
-  
-  for(;;);
+
+	for(;;);
 }
