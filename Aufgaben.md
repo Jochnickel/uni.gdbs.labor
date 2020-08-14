@@ -20,4 +20,5 @@
  Der Leser kann nur Rücksicht auf 1 Writer nehmen.
  Die Writer benutzen den selben Zeiger und schreiben in das gleiche Felasdd gleichzeitig.
   
-##
+## Lösung
+ 
