@@ -55,4 +55,4 @@
              compare XXXX XXXX
              v(sem1) ---- XXXX
                      XXXX XXXX p(sem1)
-                     ....
+                     ..
