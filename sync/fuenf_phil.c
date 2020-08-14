@@ -32,7 +32,7 @@ void test_setup(void) {
   srandom(time(NULL));
 
   for(int i=0;i<5;i++)
-  sammy[i] = sem_init(1);
+    sammy[i] = sem_init(1);
 }
 
 //-----------------------------------------------------------------------------
