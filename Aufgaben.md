@@ -33,7 +33,7 @@
   Jeder Philosoph hat ein persönliches Ess-Stäbchen.
   An Zufälligen Zeitpunkten greift ein Philosph sein Stäbchen und ein anderes (jew. falls möglich).
   Hat ein Philosoph 2 Stäbchen, so isst er 1 Veggie-Bällchen und legt die Stäbchen zurück.
-  Wenn jeder Philosoph genau ein Stäbchen hat,
+  Wenn jeder Philosoph genau ein Stäbchen hat, geben sie freiwillig dieses ab.
 
  ## Problem
   Während die Philosophen zum Stäbchen greifen, kann jemand anderes dieses "wegschnappen".
