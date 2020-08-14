@@ -46,3 +46,17 @@
  ## Lösung
   Es werden 2 Semaphoren benötigt.
   Schaubild:
+                     rdy  done
+                     ---------
+                     OOOO XXXX
+                     OOOO XXXX global++;
+                     OOOO OOOO v
+                   p XXXX OOOO
+                     OOOO XXXX
+                     OOOO XXXX
+                     OOOO XXXX
+                     OOOO XXXX
+                     OOOO XXXX
+                     OOOO XXXX
+                     OOOO XXXX
+
