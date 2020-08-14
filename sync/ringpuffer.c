@@ -56,7 +56,6 @@ int sum;
 //-----------------------------------------------------------------------------
 
 volatile semaphore kr_ab_semaphore;
-//volatile semaphore que_semaphore;
 
 void test_setup(void) {
   printf("Test Setup\n");
