@@ -112,10 +112,10 @@ void writer(long my_id) {
     while ((ringpuffer.schreib_index+1)%SIZE==ringpuffer.lese_index) {
        //do nothing
     }
-    //sem_p(mein_semaphor);
+    sem_p(kr_ab_semaphore);
     ringpuffer.feld[ringpuffer.schreib_index] = i;
     ringpuffer.schreib_index = (ringpuffer.schreib_index + 1) % SIZE;
-    //sem_v(mein_semaphor);
+    sem_v(kr_ab_semaphore);
 
 
     show_animation(1, my_id, i);
