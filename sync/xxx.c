@@ -65,6 +65,7 @@ void writer(long long_my_id) {
 	for(;increase_me<LIMIT;){
 
 		sem_p(readersAreRdy);
+
 		increase_me++;
 
 
