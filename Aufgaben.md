@@ -1,5 +1,3 @@
-
-
 # Ringpuffer
 
 ## Ausgangssituation
