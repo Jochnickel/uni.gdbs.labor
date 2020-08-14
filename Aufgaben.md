@@ -30,7 +30,7 @@
  ## Setup
   Es gibt 5 Philosophen.
   Jeder Philosoph will 100 Veggie-Bällchen essen.
-  Jeder Philosph hat ein persöniches Ess-Stäbchen.
+  Jeder Philosoph hat ein persönliches Ess-Stäbchen.
   An Zufälligen Zeitpunkten greift ein Philosph sein Stäbchen und ein anderes (jew. falls möglich).
   Hat ein Philosoph 2 Stäbchen, so isst er 1 Veggie-Bällchen und legt die Stäbchen zurück.
   Wenn jeder Philosoph genau ein Stäbchen hat,
