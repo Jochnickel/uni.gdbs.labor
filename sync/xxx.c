@@ -22,7 +22,6 @@ void test_setup(void) {
   printf("Test Setup\n");
   readers=0;
   writers=5;
-  srandom(time(NULL));
 
   for(int i=0;i<5;i++)
     sammy[i] = sem_init(1);
