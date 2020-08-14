@@ -65,7 +65,7 @@ void test_setup(void) {
   ringpuffer.lese_index=0;
 
   readers=1; // maximal 1 (nicht veraendern!)
-  writers=3; // maximal 19
+  writers=15; // maximal 19
 
   counter=0;
 
