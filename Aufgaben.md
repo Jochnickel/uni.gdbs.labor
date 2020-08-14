@@ -40,3 +40,9 @@
 
  ## Lösung
   Es wird ein kritischer Abschnitt in Stäbchen_Nehmen implementiert.
+
+# Zwei synchrone Zähler
+
+ ## Lösung
+  Es werden 2 Semaphoren benötigt.
+  Schaubild:
