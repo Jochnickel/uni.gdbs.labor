@@ -34,3 +34,9 @@
   An Zufälligen Zeitpunkten greift ein Philosph sein Stäbchen und ein anderes (jew. falls möglich).
   Hat ein Philosoph 2 Stäbchen, so isst er 1 Veggie-Bällchen und legt die Stäbchen zurück.
   Wenn jeder Philosoph genau ein Stäbchen hat,
+
+ ## Problem
+  Während die Philosophen zum Stäbchen greifen, kann jemand anderes dieses "wegschnappen".
+
+ ## Lösung
+  Es wird ein kritischer Abschnitt in Stäbchen_Nehmen implementiert.
