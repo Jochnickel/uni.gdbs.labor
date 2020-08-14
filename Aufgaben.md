@@ -51,7 +51,7 @@
                      ____ XXXX
                      XXXX XXXX p(sem1)
                      XXXX XXXX global++;
-                     XXXX OOOO v(sem2)
+                     XXXX ____ v(sem2)
              p(sem1) XXXX OOOO
                      XXXX OOOO
                      OOOO XXXX
