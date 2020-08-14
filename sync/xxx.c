@@ -64,6 +64,8 @@ void reader(long my_id) {
 void writer(long long_my_id) {
 	for(;increase_me<LIMIT;){
 		sem_p(readerRdy);
+		sem_v(readerRdy);
+
 		increase_me++;
 		sem_v(writerDone);
 	}
