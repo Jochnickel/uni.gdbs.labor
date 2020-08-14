@@ -12,7 +12,7 @@
 // alle unbedingt mit "volatile" !!!
 //-----------------------------------------------------------------------------
 
-#define MX 10000
+#define LIMIT 10000
 
 volatile int increase_me = 0;
 volatile semaphore sammy;
@@ -42,7 +42,7 @@ void test_end(void) {
 
 void reader(long my_id) {
 	
-	for(int i = 1;i<10000;i++){
+	for(int i = 1;i<LIMIT;i++){
 		// hufe scharren
 		sem_p(sammy);
 
@@ -60,8 +60,8 @@ void reader(long my_id) {
 
 
 void writer(long long_my_id) {
-	increase_me++;
-	for(;;){
+	for(;increase_me<LIMIT;){
+		increase_me++:
 		
 	}
 }
