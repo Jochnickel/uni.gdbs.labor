@@ -53,7 +53,7 @@ void reader(long my_id) {
 			perror("Nein Nein Nein");
 			exit(1);
 		}
-		sem_v
+		sem_v(readerRdy);
 		// zufrieden einschlafen
 		printf("%d matched",i);
 
@@ -64,7 +64,7 @@ void reader(long my_id) {
 
 void writer(long long_my_id) {
 	for(;increase_me<LIMIT;){
-//		sem_p(readersAreRdy);
+		sem_p(readersAreRdy);
 
 		increase_me++;
 		sem_v(writerDone);
