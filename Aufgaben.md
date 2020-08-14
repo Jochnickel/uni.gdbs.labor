@@ -47,6 +47,7 @@
   Es werden 2 Semaphoren benötigt.
   Schaubild:
               reader sem1 sem2 writer
+
                      ---- XXXX
                      XXXX XXXX p(sem1)
                      XXXX XXXX global++;
