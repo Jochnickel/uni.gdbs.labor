@@ -51,8 +51,11 @@ public class Main {
 	public static String input() throws ExitShellException {
 		var scanner = new java.util.Scanner(System.in);
 		if (scanner.hasNextLine()) {
-			return scanner.nextLine();
+			final var out = scanner.nextLine();
+			scanner.close();
+			return out;
 		} else {
+			scanner.close();
 			throw new ExitShellException();
 		}
 	}

@@ -5,7 +5,6 @@ import java.util.Scanner;
 public class Tail {
 
 	private final static String STDIN = "-";
-	private final static int READ_BUFFER_SIZE = 65536;
 
 	public static void main(final String[] args) {
 		try {
