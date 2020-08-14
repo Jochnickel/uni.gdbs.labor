@@ -53,7 +53,7 @@
                      XXXX ---- v(sem2)
              p(sem2) XXXX XXXX
              compare XXXX XXXX
-                     OOOO XXXX
+             v(sem1) OOOO XXXX
                      OOOO XXXX
                      OOOO XXXX
                      OOOO XXXX
