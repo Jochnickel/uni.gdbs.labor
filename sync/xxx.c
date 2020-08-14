@@ -51,7 +51,7 @@ void reader(long my_id) {
 			perror("Nein Nein Nein");
 			exit(1);
 		}
-		// einschlafen
+		// zufrieden einschlafen
 		ssem_v(sammy);
 
 	}
