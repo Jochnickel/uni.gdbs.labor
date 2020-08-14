@@ -46,13 +46,13 @@
  ## Lösung
   Es werden 2 Semaphoren benötigt.
   Schaubild:
-                     rdy  done
+              reader sem1 sem2 writer
                      ---------
-                     OOOO XXXX
-                     OOOO XXXX global++;
-                     OOOO OOOO v
+                     XXXX XXXX p(sem1)
+                     XXXX XXXX global++;
+                     XXXX OOOO v
                    p XXXX OOOO
-                     OOOO XXXX
+                     XXXX OOOO
                      OOOO XXXX
                      OOOO XXXX
                      OOOO XXXX
