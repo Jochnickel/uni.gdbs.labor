@@ -33,6 +33,7 @@
  ## Philosophen
  
   ### Setup
+
     Es gibt 5 Philosophen.
     Jeder Philosoph will 100 Veggie-Bällchen essen.
     Jeder Philosoph hat ein persönliches Ess-Stäbchen.
@@ -41,9 +42,11 @@
     Wenn jeder Philosoph genau ein Stäbchen hat, geben sie freiwillig dieses ab.
 
   ### Problem
+
     Während die Philosophen zum Stäbchen greifen, kann jemand anderes dieses "wegschnappen".
 
   ### Lösung
+
     Es wird ein kritischer Abschnitt in Stäbchen_Nehmen implementiert.
 
  ## Zwei synchrone Zähler
