@@ -45,15 +45,15 @@ void test_end(void) {
 void reader(long my_id) {
 	for(int i = 1;i<=LIMIT;i++){
 
+		// Vorbereitung
 		int readBuf;
 
-		// hufe scharren
 
 		sem_p(writerDone);
 		readBuf = increase_me;
 		sem_v(readerRdy);
 
-		if(i!=increase_me){
+		if(i!=readBuf){
 			perror("Nein Nein Nein");
 			exit(1);
 		}
