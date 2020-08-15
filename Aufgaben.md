@@ -81,4 +81,4 @@
  ## rename falsch.txt
   
   richtig = 72 69 63 68 74 69 67
-  RICHTIG = 52 49 43 48 57 49 47
+  RICHTIG = 52 49 43 48 54 49 47
