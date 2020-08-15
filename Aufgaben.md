@@ -53,6 +53,7 @@
 
   ### Problem
 
+   Der Writer/Reader soll auf den anderen warten, und nicht einfach weitermachen/weiterzählen.
 
   ### Lösung
 
