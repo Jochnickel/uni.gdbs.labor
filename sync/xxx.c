@@ -55,7 +55,7 @@ void reader(long my_id) {
 
 
 		if(i!=readBuf){
-			puts("Nein Nein Nein");
+			puts("\nNein Nein Nein");
 			exit(1);
 		}
 
