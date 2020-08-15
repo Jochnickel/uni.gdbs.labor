@@ -74,3 +74,10 @@
                      .
 
   Die kritischen Abschnitte sind hier nur um die increase bzw. compare-methode.
+
+
+# FAT
+
+ ## rename falsch.txt
+  
+  
