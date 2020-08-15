@@ -18,6 +18,7 @@
 
    Es gibt 2 Implementierungen von aktivem Warten und 2 Teilnehmer. Diese wissen voneinander (durch die 2 Zeiger).
    Der Zeiger wird als letztes weitergesetzt, also wenn der kritische Abschnitt fertig ist.
+   Das Array beinhaltet genügend Platz für die Manövrierung (3).
 
   ### Warum nicht bei >2 Writern ?
  
