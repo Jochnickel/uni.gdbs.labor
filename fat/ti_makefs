@@ -1,0 +1,3 @@
+#!/bin/bash
+cp /opt/ti_filesystem.fat32 ./ti_filesystem.fat32
+echo created/replaced file ./ti_filesystem.fat32

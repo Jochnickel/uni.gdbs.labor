@@ -1,0 +1,2 @@
+#!/bin/bash
+/usr/bin/hexedit --sector ./ti_filesystem.fat32

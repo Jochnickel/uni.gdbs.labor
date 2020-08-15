@@ -1,0 +1,5 @@
+#!/bin/bash
+ti_umount > /dev/null 2>&1
+cp ./ti_filesystem.fat32 /tmp/filesystem_von_$USER
+ti_rootmount
+ls -lR /tmp/$USER
