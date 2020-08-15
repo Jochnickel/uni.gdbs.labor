@@ -51,7 +51,7 @@ void reader(long my_id) {
 
 //		sem_p(writerDone); //////
 		readBuf = increase_me;///
-		sem_v(readerRdy);////////
+//		sem_v(readerRdy);////////
 
 
 		if(i!=readBuf){
