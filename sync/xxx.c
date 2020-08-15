@@ -49,7 +49,7 @@ void reader(long my_id) {
 		int readBuf;
 
 
-		sem_p(writerDone); //////
+//		sem_p(writerDone); //////
 		readBuf = increase_me;///
 		sem_v(readerRdy);////////
 
