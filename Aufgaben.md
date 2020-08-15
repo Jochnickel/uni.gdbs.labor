@@ -52,6 +52,7 @@
  ## Zwei synchrone Zähler
 
   ### Lösung
+
    Es werden 2 Semaphoren benötigt.
    Schaubild:
               reader sem1 sem2 writer
