@@ -60,7 +60,6 @@ void reader(long my_id) {
 		}
 
 
-		// Lebenspartner langweilen
 		printf("%d matched\n",i);
 
 	}
