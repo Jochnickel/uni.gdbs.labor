@@ -66,9 +66,9 @@
                      XXXX XXXX global++;
                      XXXX ---- v(sem2)
              p(sem2) XXXX XXXX
-             compare XXXX XXXX
+                read XXXX XXXX
              v(sem1) ---- XXXX
-                     XXXX XXXX p(sem1)
+             compare XXXX XXXX p(sem1)
                      .
                      .
                      .
