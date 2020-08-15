@@ -50,13 +50,8 @@ void reader(long my_id) {
 		// hufe scharren
 
 		sem_p(writerDone);
-
-		// arbeit arbeit
-
 		readBuf = increase_me;
 		sem_v(readerRdy);
-
-		// Feierabend
 
 		if(i!=increase_me){
 			perror("Nein Nein Nein");
