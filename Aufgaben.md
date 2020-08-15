@@ -16,7 +16,7 @@
 
   ### Warum funktioniert das?
 
-   Es gibt 2 implementierungen von aktivem Warten und 2 Teilnehmer. Diese wissen voneinander (durch die 2 Zeiger).
+   Es gibt 2 Implementierungen von aktivem Warten und 2 Teilnehmer. Diese wissen voneinander (durch die 2 Zeiger).
    Der Zeiger wird als letztes weitergesetzt, also wenn der kritische Abschnitt fertig ist.
 
   ### Warum nicht bei >2 Writern ?
