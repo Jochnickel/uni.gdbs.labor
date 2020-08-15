@@ -51,6 +51,9 @@
 
  ## Zwei synchrone Zähler
 
+  ### Problem
+
+
   ### Lösung
 
    Es werden 2 Semaphoren benötigt.
