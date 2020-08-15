@@ -85,7 +85,7 @@
  ## rename falsch.txt
   
   2 Zeilen Filename Long file names
-  8 Bytes fn, 
+  8 Bytes fn, 3 Bytes ext
            --  -----------------------------   -- --   --     -------------------------------------  ------   -----------
   richtig = (41) 72 __ 69 __ 63 __ 68 __ 74 __  (0F 00)  AE     69 __ 67 __ 2E __ (74 __ 78 __ 74 __)  (00 00)  00 __ FF FF
   RICHTIG = 52 49 43 48 54 49 47
