@@ -54,6 +54,7 @@
   ### Problem
 
    Der Writer/Reader soll auf den anderen warten, und nicht einfach weitermachen.
+   D.h. der Writer muss mit dem Zählen warten, der Reader mit dem lesen.
 
   ### Lösung
 
