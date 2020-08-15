@@ -44,19 +44,25 @@ void test_end(void) {
 
 void reader(long my_id) {
 	for(int i = 1;i<=LIMIT;i++){
-		// hufe scharren
+
 		int readBuf;
+
+		// hufe scharren
+
 		sem_p(writerDone);
 
 		// arbeit arbeit
+
 		readBuf = increase_me;
+		sem_v(readerRdy);
+
+		// Feierabend
+
 		if(i!=increase_me){
 			perror("Nein Nein Nein");
 			exit(1);
 		}
 
-		// Feierabend
-		sem_v(readerRdy);
 
 		// Lebenspartner langweilen
 		printf("%d matched\n",i);
@@ -68,13 +74,17 @@ void reader(long my_id) {
 
 void writer(long long_my_id) {
 	for(;increase_me<LIMIT;){
+
 		// hufe scharren
+
 		sem_p(readerRdy);
+
 		// arbeit arbeit
 
 		increase_me++;
 
-		// zufrieden einschlafen
+		// Feierabend
+
 		sem_v(writerDone);
 	}
 }
