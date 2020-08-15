@@ -84,8 +84,8 @@
 
  ## rename falsch.txt
   
-  8 Bytes Long file names
-  8 Bytes Long file names
+  16 Bytes Long file names
+  16 Bytes Long file names
   8 Bytes fn, 3 Bytes ext, 1 byte info, 4 bytes?
   4
            --  -----------------------------   -- --   --     -------------------------------------  ------   -----------
