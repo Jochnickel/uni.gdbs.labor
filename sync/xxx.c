@@ -57,9 +57,9 @@ void reader(long my_id) {
 		if(i!=readBuf){
 			puts("\nNein Nein Nein\n");
 			exit(1);
+		} else {
+			printf("%d matched\n",i);
 		}
-
-		printf("%d matched\n",i);
 
 	}
 }
