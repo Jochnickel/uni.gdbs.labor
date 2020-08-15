@@ -80,4 +80,4 @@
 
  ## rename falsch.txt
   
-  
+  richtig.txt = 72 00 69 
