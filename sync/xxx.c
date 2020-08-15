@@ -49,6 +49,7 @@ void reader(long my_id) {
 		sem_p(writerDone);
 
 		// arbeit arbeit
+		readBuf = increase_me;
 		if(i!=increase_me){
 			perror("Nein Nein Nein");
 			exit(1);
