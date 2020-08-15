@@ -6,13 +6,13 @@
 
   ### Ausgangssituation
 
-    Es gibt ein Array ("feld") mit 2 Zeigern ("schreib_index","lese_index"), diese sind mit 0 initiiert.
+   Es gibt ein Array ("feld") mit 2 Zeigern ("schreib_index","lese_index"), diese sind mit 0 initiiert.
+  
+   Wenn der writer 1 Feld vor dem leser ist (im Kreis hinten dran ist), muss er warten,
+   ansonsten schreibt er i++ in sein Feld und läuft eins weiter.
    
-    Wenn der writer 1 Feld vor dem leser ist (im Kreis hinten dran ist), muss er warten,
-    ansonsten schreibt er i++ in sein Feld und läuft eins weiter.
-    
-    Wenn der reader auf dem writer-Feld ist muss er warten,
-    ansonsten liest er das feld und setzt seinen Zeiger eins weiter.
+   Wenn der reader auf dem writer-Feld ist muss er warten,
+   ansonsten liest er das feld und setzt seinen Zeiger eins weiter.
 
   ### Warum funktioniert das?
 
