@@ -97,4 +97,4 @@
   
  ## kurz.txt
   
-  bisher nur Cluster 04  
+  bisher 03 - richtig.txt   04 - kurz.txt   05 - lang.txt  06 - lang.txt
