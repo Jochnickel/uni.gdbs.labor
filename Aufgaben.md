@@ -14,7 +14,7 @@
 
   ### starvation
    
-    Ein Prozess wird kaum scheduled.
+    Ein Prozess wird kaum ge-scheduled. 
 
  ## Ringpuffer
 
