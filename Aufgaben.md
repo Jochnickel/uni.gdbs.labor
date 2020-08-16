@@ -81,7 +81,7 @@
  ## Begriffe
   
   ### Endianness
-
+   little Endian = 'verdreht'
   ### Byte
    kleine Einheit, 8 Bit, 0x00 Hex
   ### Cluster
