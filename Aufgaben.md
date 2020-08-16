@@ -14,7 +14,7 @@
 
   ### starvation
    
-    Ein Prozess wird kaum ge-scheduled. 
+    Ein Prozess wird kaum ge-scheduled. Dies kann passieren wenn er schon viel Rechenzeit benötigte oder notwendige Ressourcen nicht verfügbar sind.
 
  ## Ringpuffer
 
