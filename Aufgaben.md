@@ -88,7 +88,7 @@
    Paket von Bytes
    z.B. 512 Byte = Byte 0x000 bis 0x200
   ### Sector
-   
+   Paket von Clustern, hier 8 Cluster = Sektor
 
  ## rename falsch.txt
   
