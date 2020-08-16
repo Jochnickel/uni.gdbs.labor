@@ -4,7 +4,7 @@
 
   ### busy wait
     aktives Warten, Prozessor frägt ständig die while-Debingnung ab (sehr oft).
-    gilt i.d.R. zu vermeiden
+    gilt i.d.R. zu vermeiden, da es im Sommer schon ohne Endlosschleife zu heiß zum Programmieren ist.
 
  ## Ringpuffer
 
