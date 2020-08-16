@@ -85,7 +85,8 @@
   ### Byte
    kleine Einheit, 8 Bit, 0x00 Hex
   ### Cluster
-   
+   Paket von Bytes
+   z.B. 512 Byte = Byte 0x000 bis 0x200
 
  ## rename falsch.txt
   
