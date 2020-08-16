@@ -81,14 +81,14 @@
  ## Begriffe
   
   ### Endianness
-   little Endian = 'verdreht'
+    little Endian = 'verdreht'
   ### Byte
-   kleine Einheit, 8 Bit, 0x00 Hex
+    kleine Einheit, 8 Bit, 0x00 Hex
   ### Cluster
-   Paket von Bytes
-   z.B. 512 Byte = Byte 0x000 bis 0x200
+    Paket von Bytes
+    z.B. 512 Byte = Byte 0x000 bis 0x200
   ### Sector
-   Paket von Clustern, hier 8 Cluster = 1 Sektor
+    Paket von Clustern, hier 8 Cluster = 1 Sektor
 
  ## rename falsch.txt
   
