@@ -73,7 +73,7 @@
                      .
                      .
 
-   Die kritischen Abschnitte sind hier nur um die increase bzw. compare-methode.
+    Die kritischen Abschnitte sind hier nur um die increase bzw. compare-methode.
 
 
 # FAT
