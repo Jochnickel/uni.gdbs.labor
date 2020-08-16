@@ -12,6 +12,10 @@
     Situation, in der 2+ Threads 2+ exklusive Ressourcen benötigen und beide schon jeweils 1+ davon beanspruchen.
     Beide Threads warten, falls nicht verhindert, auf ewig auf die andere Ressource.
 
+  ### starvation
+   
+    Ein Prozess wird kaum scheduled.
+
  ## Ringpuffer
 
   ### Ausgangssituation
