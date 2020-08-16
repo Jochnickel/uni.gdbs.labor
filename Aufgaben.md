@@ -96,3 +96,5 @@
   Datum = 86 41
   
  ## kurz.txt
+  
+  

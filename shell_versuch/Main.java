@@ -24,6 +24,7 @@ public class Main {
 				pipeline.join();
 
 			} catch (ExitShellException e) {
+				System.out.println("nöö");
 				return;
 			} catch (CommandNotFoundException e) {
 				System.out.println(e.getMessage());
@@ -53,10 +54,10 @@ public class Main {
 		var scanner = new java.util.Scanner(System.in);
 		if (scanner.hasNextLine()) {
 			final var out = scanner.nextLine();
-			scanner.close();
+//			scanner.close();
 			return out;
 		} else {
-			scanner.close();
+//			scanner.close();
 			throw new ExitShellException();
 		}
 	}
