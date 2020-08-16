@@ -3,8 +3,13 @@
  ## Begriffe
 
   ### busy wait
+
     aktives Warten, Prozessor frägt ständig die while-Debingnung ab (sehr oft).
-    gilt i.d.R. zu vermeiden, da es im Sommer schon ohne Endlosschleife zu heiß zum Programmieren ist.
+    gilt i.d.R. zu vermeiden, da es im Sommer schon ohne Endlosschleife zu heiß zum Programmieren ist. 
+
+  ### deadlock
+    
+    Situation, in der 2+ Threads 2+ exklusive Ressourcen benötigen und beide schon jeweils 1+ davon beanspruchen.
 
  ## Ringpuffer
 
