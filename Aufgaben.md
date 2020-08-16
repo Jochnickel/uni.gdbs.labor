@@ -98,4 +98,6 @@
  ## kurz.txt
   
   bisher 03 - richtig.txt   04 - kurz.txt   05 - 06 - lang.txt   07 - movehere  08 - problem   0B - subdir
-  neu 0D
+  neuer cluster 0D
+  size ist nun 17 10 00 00
+
