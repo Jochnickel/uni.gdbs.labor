@@ -2,6 +2,9 @@
 
  ## Begriffe
 
+  ### busy wait
+    
+
  ## Ringpuffer
 
   ### Ausgangssituation
