@@ -3,7 +3,7 @@
  ## Begriffe
 
   ### busy wait
-    
+    aktives Warten, Prozessor frägt ständig die while-Debingnung ab (sehr oft).
 
  ## Ringpuffer
 
