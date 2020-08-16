@@ -92,29 +92,29 @@
 
  ## rename falsch.txt
   
-   16 Bytes Long file names
-   16 Bytes Long file names
-   8 Bytes fn               3 Bytes ext, 1 byte info, 4 bytes?
-   6 Bytes? 2Bytes time     2 Bytes date, 2 Bytes first cluster, 4 Bytes size
+    16 Bytes Long file names
+    16 Bytes Long file names
+    8 Bytes fn               3 Bytes ext, 1 byte info, 4 bytes?
+    6 Bytes? 2Bytes time     2 Bytes date, 2 Bytes first cluster, 4 Bytes size
 
               --  -----------------------------   -- --   --     -------------------------------------  ------   -----------
-   richtig = (41) 72 __ 69 __ 63 __ 68 __ 74 __  (0F 00)  AE     69 __ 67 __ 2E __ (74 __ 78 __ 74 __)  (00 00)  00 __ FF FF
-   RICHTIG = 52 49 43 48 54 49 47
- 
-   Datum = 86 41
+    richtig = (41) 72 __ 69 __ 63 __ 68 __ 74 __  (0F 00)  AE     69 __ 67 __ 2E __ (74 __ 78 __ 74 __)  (00 00)  00 __ FF FF
+    RICHTIG = 52 49 43 48 54 49 47
+  
+    Datum = 86 41
   
  ## kurz.txt
   
-   bisher 03 - richtig.txt   04 - kurz.txt   05 - 06 - lang.txt   07 - movehere  08 - problem   0B - subdir
-   neuer cluster 0D
-   size ist nun 17 10 __ __
+    bisher 03 - richtig.txt   04 - kurz.txt   05 - 06 - lang.txt   07 - movehere  08 - problem   0B - subdir
+    neuer cluster 0D
+    size ist nun 17 10 __ __
 
  ## subdir movehere
 
                                                                 ..
                                                                 .O.O
-   0000D440   41 62 00 65 00 69 00 73  00 70 00 0F 00 7D 69 00  Ab.e.i.s.p...}i.
-   0000D450   65 00 6C 00 2E 00 74 00  78 00 00 00 74 00 00 00  e.l...t.x...t...
-   0000D460   42 45 49 53 50 49 45 4C  54 58 54 20 00 42 AD 7E  BEISPIELTXT .B.~
-   0000D470   1C 4F 1C 4F 00 00 AD 7E  1C 4F 0C 00 09 00 00 00  .O.O...~.O......
+    0000D440   41 62 00 65 00 69 00 73  00 70 00 0F 00 7D 69 00  Ab.e.i.s.p...}i.
+    0000D450   65 00 6C 00 2E 00 74 00  78 00 00 00 74 00 00 00  e.l...t.x...t...
+    0000D460   42 45 49 53 50 49 45 4C  54 58 54 20 00 42 AD 7E  BEISPIELTXT .B.~
+    0000D470   1C 4F 1C 4F 00 00 AD 7E  1C 4F 0C 00 09 00 00 00  .O.O...~.O......
 
