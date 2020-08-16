@@ -4,6 +4,7 @@
 
   ### busy wait
     aktives Warten, Prozessor frägt ständig die while-Debingnung ab (sehr oft).
+    gilt i.d.R. zu vermeiden
 
  ## Ringpuffer
 
