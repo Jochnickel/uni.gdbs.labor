@@ -97,4 +97,4 @@
   
  ## kurz.txt
   
-    
+  bisher nur Sektor 04  
